@@ -27,7 +27,7 @@ const DashboardLayout = () => {
             <div className='flex w-screen bg-[#F5F7F8]'>
                 <SdSidebar />
                 <div className='flex flex-col w-full '>
-                    <Navbar />
+                    {/* <Navbar /> */}
                     <Outlet />
                 </div>
             </div>

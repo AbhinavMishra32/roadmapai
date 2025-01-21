@@ -8,7 +8,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <div className='fixed rounded-2xl z-20 w-full h-[50px] border-2 mx-2 bg-white/80 border-yellow-400 backdrop-blur-lg flex items-center'>
+      <div className='fixed rounded-2xl z-20 w-full h-[50px] border-2 mx-2 bg-white/80 dark:bg-neutral-950 border-yellow-400 dark:border-neutral-900 backdrop-blur-lg flex items-center'>
         <SidebarTrigger className='h-full w-10' />
         {/* <h1 className='ml-4 text-2xl font-bold text-gray-800'>Navbar</h1> */}
         <button onClick={handleBack} className='h-full flex items-center gap-2 hover:bg-gray-100 px-1 rounded-lg'>

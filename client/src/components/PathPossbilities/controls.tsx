@@ -79,34 +79,34 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
     )
   }
   return (
-    <Card className={`fixed bottom-4 right-4 w-[350px] rounded-2xl shadow-lg z-50 bg-white/70 backdrop-blur-md border-2 border-amber-200 transition-all duration-300 ease-in-out ${selectedNode ? 'translate-y-[calc(100%+1rem)]' : 'translate-y-0'}`}>
+    <Card className={`fixed bottom-4 right-4 w-[350px] rounded-2xl shadow-lg z-50 bg-white/70 dark:bg-indigo-900/10 backdrop-blur-md border-2 border-amber-200 dark:border-1 dark:border-gray-400/40 transition-all duration-300 ease-in-out ${selectedNode ? 'translate-y-[calc(100%+1rem)]' : 'translate-y-0'}`}>
       <CardContent className="p-4">
-        <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
           <BrainCircuit className="h-5 w-5" />
           Want to explore more ideas?
         </h3>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div className="relative">
-            <Compass className="absolute left-3 top-2.5 h-5 w-5 text-amber-500" />
+            <Compass className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
             <Input
               placeholder="Current cosmic coordinates"
               value={situation}
               onChange={(e) => setSituation(e.target.value)}
-              className="pl-10 py-2.5 bg-inherit border-amber-200 rounded-2xl text-amber-900 placeholder-amber-400"
+              className="pl-10 py-2.5 bg-inherit dark:border-2 border-amber-200 dark:border-gray-400/40 rounded-2xl text-amber-900 dark:text-gray-400 placeholder-amber-400"
             />
           </div>
           <div className="relative">
-            <Target className="absolute left-3 top-2.5 h-5 w-5 text-amber-500" />
+            <Target className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
             <Input
               placeholder="Your stellar destination"
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
-              className="pl-10 py-2.5 bg-inherit border-amber-200 rounded-2xl text-amber-900 placeholder-amber-400"
+              className="pl-10 py-2.5 bg-inherit dark:border-2 border-amber-200 dark:border-gray-400/40 rounded-2xl text-amber-900 dark:text-gray-400 placeholder-amber-400"
             />
           </div>
           <Button 
             type="submit" 
-            className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-white font-semibold shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-indigo-400 to-indigo-400 hover:from-indigo-500 hover:to-indigo-500 text-white font-semibold shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
             disabled={isGenerating}
           >
             {isGenerating ? (

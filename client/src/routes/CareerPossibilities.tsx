@@ -113,7 +113,7 @@ const CareerPossibilities = () => {
           ...ed.style,
           // stroke: highlightedEdges.has(ed.id) ? 'rgb(189, 189, 189)' : 'rgb(86, 86, 86)',
           // stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(80, 74, 237, 1)',
-          stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(155, 156, 247, 0.6)',
+          stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(155, 156, 247, 0.9)',
           strokeWidth: highlightedEdges.has(ed.id) ? 3 : 2,
         },
         animated: highlightedEdges.has(ed.id),
@@ -192,17 +192,17 @@ const CareerPossibilities = () => {
             className="bg-gray-50 dark:bg-neutral-950"
           >
             <Controls />
-            <MiniMap
+            {/* <MiniMap
               nodeStrokeColor={(n) => '#94a3b8'}
               nodeColor={(n) => '#ffffff'}
               className="!bottom-20 !right-1"
-            />
+            /> */}
             <Background
               variant={BackgroundVariant.Dots}
               gap={16}
               size={1}
               color="#94a3b8"
-              style={{ opacity: 0.4 }}
+              style={{ opacity: 0.3 }}
             />
           </ReactFlow>
         )}
