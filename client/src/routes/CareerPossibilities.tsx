@@ -77,7 +77,7 @@ const CareerPossibilities = () => {
   const resetSelection = useCallback(() => {
     setSelectedNode(null)
     setEdges((eds) =>
-      eds.map((ed) => ({ ...ed, style: { ...ed.style, stroke: '#EAB308', strokeWidth: 2 } }))
+      eds.map((ed) => ({ ...ed, style: { ...ed.style, stroke: 'rgba(155, 156, 247, 0.6)', strokeWidth: 2 } }))
     )
     setNodes((nds) =>
       nds.map((nd) => ({ ...nd, data: { ...nd.data, isExpanded: false } }))
@@ -108,9 +108,12 @@ const CareerPossibilities = () => {
     setEdgesReactFlow((eds) =>
       eds.map((ed) => ({
         ...ed,
+        type: 'smoothstep',
         style: {
           ...ed.style,
-          stroke: highlightedEdges.has(ed.id) ? '#EF4444' : '#EAB308',
+          // stroke: highlightedEdges.has(ed.id) ? 'rgb(189, 189, 189)' : 'rgb(86, 86, 86)',
+          // stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(80, 74, 237, 1)',
+          stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(155, 156, 247, 0.6)',
           strokeWidth: highlightedEdges.has(ed.id) ? 3 : 2,
         },
         animated: highlightedEdges.has(ed.id),
@@ -165,7 +168,7 @@ const CareerPossibilities = () => {
 
   return (
     <div className="flex flex-col w-full h-screen bg-neutral-600">
-      <div className={`p-4 bg-gray-50 ${!isInitialized && "h-full"} flex items-center`}>
+      <div className={`p-4 bg-gray-50 dark:bg-neutral-900 ${!isInitialized && "h-full"} flex items-center`}>
         <ControlsComponent onGenerateNewMindMap={generateNewMindMap} isGenerating={isGenerating} isInitialized={isInitialized} selectedNode={selectedNode} />
       </div>
       <div className="flex-grow relative">
@@ -184,9 +187,9 @@ const CareerPossibilities = () => {
             fitView
             minZoom={0.5}
             maxZoom={1.5}
-            defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
+            defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
             attributionPosition="bottom-left"
-            className="bg-neutral-900"
+            className="bg-gray-50 dark:bg-neutral-950"
           >
             <Controls />
             <MiniMap
