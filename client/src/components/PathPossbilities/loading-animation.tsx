@@ -36,7 +36,7 @@ const LoadingAnimation: React.FC = () => {
                   <motion.path
                     d={path}
                     stroke="rgba(155, 156, 247, 0.6)"
-                    strokeWidth="1"
+                    strokeWidth="2"
                     fill="none"
                     strokeLinecap="square"
                     initial={{ pathLength: 0 }}
@@ -52,7 +52,7 @@ const LoadingAnimation: React.FC = () => {
                   <motion.path
                     d={path}
                     stroke="rgba(59, 130, 246, 0.6)"
-                    strokeWidth="1"
+                    strokeWidth="0"
                     fill="none"
                     strokeLinecap="square"
                     initial={{ pathLength: 0 }}
@@ -77,7 +77,7 @@ const LoadingAnimation: React.FC = () => {
           <motion.div
             className="w-[80px] h-[50px] bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-lg relative overflow-hidden"
             style={{
-              boxShadow: "0 0 70px 2px rgba(59, 130, 246, 0.1), 0 0 30px 4px rgba(59, 130, 246, 0.05)",
+              boxShadow: "0 0 70px 2px rgba(149, 130, 246, 0.1), 0 0 30px 4px rgba(149, 130, 246, 0.05)",
             }}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -90,7 +90,7 @@ const LoadingAnimation: React.FC = () => {
           >
             {/* Glow effect */}
             <motion.div
-              className="absolute inset-0 bg-blue-500/5"
+              className="absolute inset-0 bg-indigo-500/5"
               animate={{ opacity: [0.3, 0.5, 0.3] }}
               transition={{
                 duration: 2,
@@ -101,7 +101,7 @@ const LoadingAnimation: React.FC = () => {
 
             {/* Shimmer effect */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent"
               initial={{ x: "-100%" }}
               animate={{ x: "100%" }}
               transition={{
@@ -114,7 +114,7 @@ const LoadingAnimation: React.FC = () => {
 
             {/* Pulsing border */}
             <motion.div
-              className="absolute inset-0 rounded-lg border-2 border-blue-500/30"
+              className="absolute inset-0 rounded-lg border-2 border-indigo-500/30"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1, 0] }}
               transition={{

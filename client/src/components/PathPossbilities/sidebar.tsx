@@ -155,30 +155,30 @@ const filterCounsellors = async (description: string) => {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
-  const [counsellors, setCounsellors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  // const [counsellors, setCounsellors] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCounsellors = async () => {
-      setLoading(true);
-      try {
-        setCounsellors(await filterCounsellors(selectedNode?.data.description || ''));
-      } catch (error) {
-        console.error('Error fetching counsellors:', error)
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCounsellors = async () => {
+  //     setLoading(true);
+  //     try {
+  //       setCounsellors(await filterCounsellors(selectedNode?.data.description || ''));
+  //     } catch (error) {
+  //       console.error('Error fetching counsellors:', error)
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    if (selectedNode) {
-      fetchCounsellors();
-    }
-  }, [selectedNode]);
+  //   if (selectedNode) {
+  //     fetchCounsellors();
+  //   }
+  // }, [selectedNode]);
 
-  useEffect(() => {
-    console.log('Counsellors: ', counsellors);
-  }, [counsellors]);
+  // useEffect(() => {
+  //   console.log('Counsellors: ', counsellors);
+  // }, [counsellors]);
 
   if (!selectedNode) return null
   const IconComponent = selectedNode.data.icon ? icons[selectedNode.data.icon as keyof typeof icons] : Briefcase
@@ -193,33 +193,33 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
         damping: 30,
         duration: 0.3
       }}
-      className="fixed right-0 top-[80px] w-72 rounded-3xl m-2 bg-gradient-to-t from-white/80 to-yellow-50/80 backdrop-blur-md shadow-xl border-2 border-yellow-400 overflow-y-auto max-h-[70vh]"
+      className="fixed right-0 top-[80px] w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4"
     >
-      <div className="p-2 m-4 rounded-xl bg-white transition-all duration-200">
+      <div className="p-2 rounded-xl transition-all duration-200">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-yellow-50 rounded-lg transform transition-all duration-200 hover:scale-105 hover:bg-yellow-100">
-              <IconComponent className="w-5 h-5 text-yellow-600" />
+            <div className="p-2.5 bg-indigo-200 rounded-lg transform transition-all hover:bg-indigo-100 duration-500">
+              <IconComponent className="w-5 h-5 text-black" />
             </div>
-            <h2 className="text-lg font-semibold text-gray-900">{selectedNode.data.label}</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-200">{selectedNode.data.label}</h2>
           </div>
           
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-sm text-gray-600 dark:text-gray-200 leading-relaxed">
             {selectedNode.data.description}
           </p>
 
           {selectedNode.data.detailedDescription && (
-            <div className="text-sm bg-gray-100 p-3 rounded-lg border border-gray-100">
-              <h3 className="text-sm font-medium text-gray-700 mb-2">Description</h3>
-              <p className="text-gray-600 leading-relaxed">
+            <div className="text-sm bg-gray-100 dark:bg-neutral-800/40 p-3 rounded-lg border border-gray-500/40">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 {selectedNode.data.detailedDescription}
               </p>
             </div>
           )}
 
-          <div className="text-sm bg-slate-50 p-3 rounded-lg border border-slate-100">
-            <span className="text-yellow-600 font-medium">Est. Time: </span>
-            <span className="text-gray-700">{selectedNode.data.timeEstimate}</span>
+          <div className="text-sm bg-slate-50 dark:bg-neutral-800/40 p-3 rounded-lg border border-gray-500/40">
+            <span className="text-yellow-600 dark:text-indigo-300/80 font-medium">Est. Time: </span>
+            <span className="text-gray-700 dark:text-gray-400">{selectedNode.data.timeEstimate}</span>
           </div>
 
           {selectedNode.data.nextSteps?.length > 0 && (
@@ -228,7 +228,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
               <ul className="space-y-2">
                 {selectedNode.data.nextSteps.map((step, index) => (
                   <li key={index} className="flex items-center text-sm text-gray-600 hover:text-gray-800 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 dark:bg-indigo-400 mr-2" />
                     {step}
                   </li>
                 ))}
@@ -237,7 +237,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
           )}
         </div>
         {/* Here comes the available counselors */}
-        {loading ? (
+        {/* {loading ? (
           <div className="flex items-center justify-center mt-4">
             <div className="w-6 h-6 border-2 border-t-2 border-yellow-400 rounded-full animate-spin" />
           </div>
@@ -287,7 +287,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
               </div>
               ))}
             </div>
-              ))}
+              ))} */}
             </div>
             </motion.div>
       )}
