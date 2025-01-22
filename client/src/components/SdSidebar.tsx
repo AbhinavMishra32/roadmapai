@@ -28,6 +28,11 @@ const studentItems = [
         url: "/careerroadmap",
         icon: RouteIcon,
     },
+    {
+        title: 'Todos',
+        url: '/todos',
+        icon: BlocksIcon,
+    }
     // {
     //     title: "Settings",
     //     url: "#",
@@ -69,7 +74,6 @@ const signOut = () => {
 export function SdSidebar() {
     const [user, setUser] = useState<{ username: string; email: string; accountType: string } | null>(null);
     const [loadingUser, setLoadingUser] = useState(true);
-    const [voiceEnabled, setVoiceEnabled] = useState(true);
     const url = window.location.pathname;
 
 
@@ -100,68 +104,16 @@ export function SdSidebar() {
             navigate(items[index].url);
         }
     };
-    useEffect(() => {
-        const handleKeyDown = async (event: KeyboardEvent) => {
-            if (event.key >= '1' && event.key <= '9' && !url.includes('/counselling/chat') && !url.includes('/careerroadmap')) {
-                const index = parseInt(event.key, 10) - 1;
-                const items = user?.accountType === 'student' ? studentItems : counsellorItems;
-                
-                if (index < items.length && 'speechSynthesis' in window) {
-                  if (voiceEnabled && !window.speechSynthesis.speaking) {
-                    try {
-                      const utterance = new SpeechSynthesisUtterance(items[index].title);
-                      utterance.volume = 1;
-                      utterance.rate = 0.9;
-                      utterance.pitch = 1;
-                      window.speechSynthesis.speak(utterance);
-                    } catch (error) {
-                      console.error('Speech synthesis failed:', error);
-                    }
-                  }
-                }
-                
-                handleSidebarClick(index);
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-            }
-        };
-    }, [user, url, voiceEnabled]);
 
     return (
         <>
-            <Sidebar className="rounded-3xl duration-70000 border-2 overflow-hidden shadow-xl hover:shadow-2xl transition-all ease-in">
-            <SidebarHeader className="p-2">
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                onClick={() => {
-                                    const cookies = new Cookies();
-                                    cookies.set('voiceEnabled', !voiceEnabled);
-                                    console.log('Voice enabled:', cookies.get('voiceEnabled'));
-                                    setVoiceEnabled(!voiceEnabled);
-                                }}
-                                aria-label={voiceEnabled ? "Disable voice" : "Enable voice"}
-                            >
-                                {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>{voiceEnabled ? "Disable voice" : "Enable voice"}</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+            <Sidebar className="rounded-3xl duration-70000 overflow-hidden shadow-xl hover:shadow-2xl transition-all ease-in">
+            <SidebarHeader className="p-2 dark:bg-neutral-900">
+                <div className="flex items-center gap-2">
+                    <h3 className='text-2xl'>Logo</h3>  
+                    </div>
             </SidebarHeader>
-                <SidebarContent className="bg-neutral-800">
+                <SidebarContent className="dark:bg-neutral-950">
                     <SidebarGroup>
                         {/* <SidebarGroupLabel>Pages</SidebarGroupLabel> */}
                         <SidebarGroupContent>
@@ -182,7 +134,7 @@ export function SdSidebar() {
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
-                <SidebarFooter>
+                <SidebarFooter className='dark:bg-neutral-900'>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <DropdownMenu>

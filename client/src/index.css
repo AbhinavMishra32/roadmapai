@@ -63,7 +63,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
   ;
-    --sidebar-background: #F5F7F8;
+    --sidebar-background: 0, 0.00%, 7.50%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;

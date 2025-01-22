@@ -9,7 +9,9 @@ import ReactFlow, {
   Node,
   Edge,
   useReactFlow,
-  Position
+  Position,
+  addEdge,
+  SelectionMode
 } from 'reactflow'
 import dagre from 'dagre'
 import 'reactflow/dist/style.css'
@@ -21,6 +23,7 @@ import LoadingAnimation from '../components/PathPossbilities/loading-animation'
 
 import { generateMindMapData } from '@/utils/aiUtils';
 import { MindMapNode, MindMapEdge } from '../types'
+import LoadingAnimationPage from '@/components/PathPossbilities/LoadingAnimationPage'
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -77,7 +80,7 @@ const CareerPossibilities = () => {
   const resetSelection = useCallback(() => {
     setSelectedNode(null)
     setEdges((eds) =>
-      eds.map((ed) => ({ ...ed, style: { ...ed.style, stroke: 'rgba(155, 156, 247, 0.6)', strokeWidth: 2 } }))
+      eds.map((ed) => ({ ...ed, style: { ...ed.style, stroke: 'rgba(155, 156, 247, 0.9)', strokeWidth: 2 } }))
     )
     setNodes((nds) =>
       nds.map((nd) => ({ ...nd, data: { ...nd.data, isExpanded: false } }))
@@ -115,6 +118,7 @@ const CareerPossibilities = () => {
           // stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(80, 74, 237, 1)',
           stroke: highlightedEdges.has(ed.id) ? 'rgb(205, 209, 255)' : 'rgba(155, 156, 247, 0.9)',
           strokeWidth: highlightedEdges.has(ed.id) ? 3 : 2,
+          // strokeDasharray: highlightedEdges.has(ed.id) ? '8 13' : 'none',
         },
         animated: highlightedEdges.has(ed.id),
       }))
@@ -166,14 +170,19 @@ const CareerPossibilities = () => {
     }
   }, [setNodes, setEdges])
 
+  const onConnect = useCallback(
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges],
+  );
+
   return (
     <div className="flex flex-col w-full h-screen bg-neutral-600">
-      <div className={`p-4 bg-gray-50 dark:bg-neutral-900 ${!isInitialized && "h-full"} flex items-center`}>
+      <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
         <ControlsComponent onGenerateNewMindMap={generateNewMindMap} isGenerating={isGenerating} isInitialized={isInitialized} selectedNode={selectedNode} />
       </div>
       <div className="flex-grow relative">
         {isGenerating ? (
-          <LoadingAnimation />
+          <LoadingAnimationPage />
         ) : (
           <ReactFlow
             nodes={nodes}
@@ -181,9 +190,14 @@ const CareerPossibilities = () => {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onInit={onInit}
+            onConnect={onConnect}
             onNodeClick={onNodeClick}
             onPaneClick={onPaneClick}
             nodeTypes={nodeTypes}
+            panOnScroll
+            selectionMode={SelectionMode.Full}
+            selectionOnDrag={true}
+            multiSelectionKeyCode="Control"
             fitView
             minZoom={0.5}
             maxZoom={1.5}

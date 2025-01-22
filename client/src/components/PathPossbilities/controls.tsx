@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2, Target, Compass, ArrowRight, Sparkles, BrainCircuit } from 'lucide-react'
+import { Background, BackgroundVariant } from 'reactflow'
 
 interface ControlsProps {
   onGenerateNewMindMap: (situation: string, goal: string) => void
@@ -26,56 +27,64 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
 
   if (!isInitialized) {
     return (
-      <Card className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg border-2 border-amber-200">
-        <CardHeader className="bg-gray-100 p-6">
-          <CardTitle className="text-2xl font-bold text-gray-700 flex items-center gap-2">
-            <BrainCircuit className="h-8 w-8" />
-            Create Your AI Roadmap
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6 bg-white">
-          <p className="text-slate-600 mb-4">
-            Our AI-powered mind map creator helps you explore connections, discover new paths, and illuminate your thinking process.
-          </p>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="relative">
-              <Compass className="absolute left-3 top-2.5 h-5 w-5 text-amber-500" />
-              <Input
-                placeholder="Where are you now? (e.g., 'Starting a new project')"
-                value={situation}
-                onChange={(e) => setSituation(e.target.value)}
-                className="pl-10 py-3 rounded-2xl text-amber-900 placeholder-amber-400"
-              />
-            </div>
-            <div className="relative">
-              <Target className="absolute left-3 top-2.5 h-5 w-5 text-amber-500" />
-              <Input
-                placeholder="Where do you want to go? (e.g., 'Launch successfully')"
-                value={goal}
-                onChange={(e) => setGoal(e.target.value)}
-                className="pl-10 py-3 rounded-2xl text-amber-900 placeholder-amber-400"
-              />
-            </div>
-            <Button 
-              type="submit" 
-              className="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-white font-semibold text-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
-              disabled={isGenerating}
-            >
-              {isGenerating ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Crafting Your Mind Galaxy...
-                </>
-              ) : (
-                <>
-                Create your Roadmap
-                  <Sparkles className="ml-2 h-5 w-5" />
-                </>
-              )}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+      <>
+        <Card className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg border-2 border-amber-200 dark:border-indigo-400/50">
+          <CardHeader className="bg-gray-100 dark:bg-neutral-800 p-6">
+            <CardTitle className="text-2xl font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+              <BrainCircuit className="h-8 w-8" />
+              Create Your AI Roadmap
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 bg-white dark:bg-neutral-900">
+            <p className="text-slate-600 dark:text-gray-300 mb-4">
+              Our AI-powered mind map creator helps you explore connections, discover new paths, and illuminate your thinking process.
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="relative">
+                <Compass className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
+                <Input
+                  placeholder="Where are you now? (e.g., 'Starting a new project')"
+                  value={situation}
+                  onChange={(e) => setSituation(e.target.value)}
+                  className="pl-10 py-3 rounded-2xl"
+                />
+              </div>
+              <div className="relative">
+                <Target className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
+                <Input
+                  placeholder="Where do you want to go? (e.g., 'Launch successfully')"
+                  value={goal}
+                  onChange={(e) => setGoal(e.target.value)}
+                  className="pl-10 py-3 rounded-2xl"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-500 text-white font-semibold text-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
+                disabled={isGenerating}
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Crafting Your Mind Galaxy...
+                  </>
+                ) : (
+                  <>
+                    Create your Roadmap
+                    <Sparkles className="ml-2 h-5 w-5" />
+                  </>
+                )}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+        {/* <Background
+          variant={BackgroundVariant.Dots}
+          gap={16}
+          size={1}
+          style={{ opacity: 0.3, zIndex: -1}}
+        />  */}
+      </>
     )
   }
   return (
@@ -104,8 +113,8 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
               className="pl-10 py-2.5 bg-inherit dark:border-2 border-amber-200 dark:border-gray-400/40 rounded-2xl text-amber-900 dark:text-gray-400 placeholder-amber-400"
             />
           </div>
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-indigo-400 to-indigo-400 hover:from-indigo-500 hover:to-indigo-500 text-white font-semibold shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
             disabled={isGenerating}
           >
@@ -116,7 +125,7 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
               </>
             ) : (
               <>
-              Create A New Roadmap
+                Create A New Roadmap
                 <ArrowRight className="ml-2 h-5 w-5" />
               </>
             )}
