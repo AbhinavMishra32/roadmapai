@@ -193,7 +193,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
         damping: 30,
         duration: 0.3
       }}
-      className="fixed right-0 top-[80px] w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4"
+      
+      className="fixed right-0 top-[80px] w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-[0_0px_60px_14px_rgba(0,0,0,0.6)] border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4"
     >
       <div className="p-2 rounded-xl transition-all duration-200">
         <div className="space-y-4">
