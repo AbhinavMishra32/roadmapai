@@ -95,9 +95,9 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
   const IconComponent = selectedNode?.data.icon ? icons[selectedNode.data.icon as keyof typeof icons] : Briefcase
 
   const contentVariants = {
-    initial: { opacity: 0, filter: "blur(10px) brightness(0.5)" },
-    animate: { opacity: 1, filter: "blur(0px) brightness(1)" },
-    exit: { opacity: 0, filter: "blur(10px) brightness(0.5)" },
+    initial: { opacity: 0, scale: 0.96, filter: "blur(7px) brightness(0.8)" },
+    animate: { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" },
+    exit: { opacity: 0, scale: 0.96, filter: "blur(7px) brightness(0.8)" },
   }
 
   return (
@@ -114,7 +114,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
             animate="animate"
             exit="exit"
             variants={contentVariants}
-            transition={{ duration: 0.5 , ease: 'easeOut' }}
+            transition={{ duration: 0.4 , ease: 'easeOut' }}
             className="p-2 rounded-xl"
           >
             <div className="space-y-4">
@@ -145,12 +145,12 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
 
               {selectedNode.data.nextSteps?.length > 0 && (
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-700">Next Steps</h3>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-400">Next Steps</h3>
                   <ul className="space-y-2">
                     {selectedNode.data.nextSteps.map((step, index) => (
                       <li
                         key={index}
-                        className="flex items-center text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                        className="flex items-center text-sm text-gray-600 dark:text-gray-500"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 dark:bg-indigo-400 mr-2" />
                         {step}

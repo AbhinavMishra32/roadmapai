@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
+import { CareerDock } from '@/components/PathPossbilities/dock';
 
 const DashboardLayout = () => {
     const navigate = useNavigate();

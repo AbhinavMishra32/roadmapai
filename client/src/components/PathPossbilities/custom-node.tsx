@@ -2,6 +2,7 @@ import { memo, useState } from "react"
 import { Handle, Position } from "reactflow"
 import { Briefcase, Book, Code, Server, Cloud, Users, School, Building2, LineChart, Plus } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+import { set } from "react-hook-form"
 
 const icons = {
   briefcase: Briefcase,
@@ -89,8 +90,8 @@ function CustomNode({
           width: data.isExpanded ? "240px" : "220px",
           fontSize: "3.75rem",
         }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={() => setTimeout(() => setHovered(true), 300)}
+        onMouseLeave={() => setTimeout(() => setHovered(false), 1000)}
       >
         <Handle
           type="target"
