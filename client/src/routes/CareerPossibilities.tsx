@@ -24,6 +24,7 @@ import LoadingAnimation from '../components/PathPossbilities/loading-animation'
 import { generateMindMapData } from '@/utils/aiUtils';
 import { MindMapNode, MindMapEdge } from '../types'
 import LoadingAnimationPage from '@/components/PathPossbilities/LoadingAnimationPage'
+import { AnimatePresence } from 'framer-motion'
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -221,11 +222,15 @@ const CareerPossibilities = () => {
           </ReactFlow>
         )}
       </div>
-      {selectedNode && (
-        <div className="p-4 border-t border-gray-200">
-          <Sidebar selectedNode={selectedNode} />
-        </div>
-      )}
+      <div>
+        <AnimatePresence>
+          {selectedNode && (
+            <div className="p-4 border-t border-gray-200">
+              <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   )
 }

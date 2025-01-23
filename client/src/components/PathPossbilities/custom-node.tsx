@@ -35,12 +35,51 @@ function CustomNode({
 
   const [hovered, setHovered] = useState(false)
 
+  const buttonVariants = {
+    initial: { scale: 0, rotate: -180, filter: "blur(40px)", opacity: 0 },
+    animate: {
+      scale: 1,
+      rotate: 0,
+      filter: "blur(0px)",
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+    exit: {
+      scale: 0,
+      rotate: 180,
+      filter: "blur(40px)",
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    hover: {
+      scale: 1.1,
+      rotate: [0, -10, 10, -10, 10, 0],
+      transition: {
+        rotate: {
+          duration: 0.5,
+          ease: "easeInOut",
+        },
+      },
+    },
+  }
+
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+        }}
         className={`group relative px-4 py-3 shadow-md dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border transition-all duration-300 hover:shadow-lg hover:scale-105 ${
           data.isHighlighted
             ? "border-red-400 dark:border-indigo-500 bg-red-50 dark:bg-indigo-700/10 backdrop-blur-sm"
@@ -64,14 +103,11 @@ function CustomNode({
         <AnimatePresence>
           {data.isExpanded && hovered && (
             <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0, rotate: 180 }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-              }}
+              variants={buttonVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              whileHover="hover"
               className="absolute -top-3 -right-3 text-sm bg-gray-200 dark:bg-indigo-900 border dark:border-indigo-300 hover:bg-indigo-300 dark:hover:bg-indigo-500 rounded-full"
             >
               <button className="p-2 rounded-full w-full h-full" onClick={() => (data.isExpanded = false)}>
