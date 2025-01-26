@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import './VideoDetails.css';
 
 interface VideoDetailsProps {
     videoUrl: string;
@@ -38,10 +39,17 @@ const VideoDetails: React.FC<VideoDetailsProps> = ({ videoUrl, title, onEnded })
                 </video>
                 <div className="video-controls">
                     <button
-                        className="play-pause-button"
+                        className={`play-pause-button ${isPlaying ? 'playing' : ''}`}
                         onClick={handlePlayPause}
+                        aria-label={isPlaying ? 'Pause' : 'Play'}
                     >
-                        {isPlaying ? 'Pause' : 'Play'}
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            {isPlaying ? (
+                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor" />
+                            ) : (
+                                <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+                            )}
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -49,4 +57,4 @@ const VideoDetails: React.FC<VideoDetailsProps> = ({ videoUrl, title, onEnded })
     );
 };
 
-export default VideoDetails;</video>
+export default VideoDetails;
