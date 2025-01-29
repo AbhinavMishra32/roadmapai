@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { generateRecommendations } from '@/utils/aiUtils'
 import { CourseDetailsModal } from '@/components/CourseFinder/CourseDetailsModal'
-import { LoadingAnimation } from '@/components/CourseFinder/LoadingAnimation-2'
+// import { LoadingAnimation } from '@/components/CourseFinder/LoadingAnimation-2'
 import { Course } from '@/types'
 
 export default function Home() {

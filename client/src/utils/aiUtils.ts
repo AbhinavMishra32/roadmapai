@@ -227,20 +227,21 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
   Desired Career Outcome: ${desiredOutcome}
 
   1. A "Starting Point" node representing the current state 
-  2. At least 10-15 main career paths or stages
+  2. At least 10-15 roadmap paths.
   3. Nodes that connect to multiple other nodes
   4. Some paths that converge (e.g., different paths leading to a common advanced stage)
   5. A mix of linear progressions and branching options (have branching options at least 3 times)
-  6. Keep the mind map as detailed and realistic as possible (for India), keep it detailed and more nodes and edges would be awesome, have alot of nodes, and have them connected in a way that makes sense
-  7. The final node(s) representing the desired outcome
-  8. Dont have the label and id CamelCase, use natural english words with spaces (label is the card / node label that tells details about the node as tags and what thing is happening in that node (something other than whats being told in the description))
-  9. In detailedDescription provide a detailed description of the node, what it is about, what it does, what it is used for, etc.
+  6. Keep the roadmap as detailed and up to date as possible, keep it detailed and more nodes and edges would be awesome, have alot of nodes, and have them connected in a way that makes sense.
+  7. The final node representing the desired outcome
+  8. Make the roadmap tell in detail about anything the user asks for.
+  9. Dont have the label and id CamelCase, use natural english words with spaces (label is the card / node label that tells details about the node as tags and what thing is happening in that node (something other than whats being told in the description))
+  10. In detailedDescription provide a detailed description of the node, what it is about, what it does, what it is used for, etc.
 
   Requirements for nodes:
   - Unique string IDs (e.g., names of nodes in natural english)
   - type: 'customNode'
   - icon from this list: briefcase, book, code, server, cloud, users, school, building, chart, Briefcase, Stethoscope, Code, Gavel, Mic, Paintbrush, Calculator, Book, Tool, Camera, Cutlery, Wrench, Flask, Music, Globe, DollarSign, Airplane, Tree, Package, Heart
-  - Meaningful and specific descriptions related to the chosen tech field (1-2 sentences).
+  - Meaningful and specific descriptions related to the chosen category (5-6 sentences).
   - Realistic timeEstimates
   - Relevant nextSteps array
 
