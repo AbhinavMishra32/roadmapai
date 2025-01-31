@@ -6,6 +6,7 @@ import { SidebarProvider } from "../components/ui/sidebar";
 import { SdSidebar } from "../components/SdSidebar";
 import React from "react";
 import AuthCheck from "@/components/AuthCheck";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -34,15 +35,22 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SidebarProvider>
-          <div className='flex w-screen bg-[#F5F7F8]'>
-            <SdSidebar />
-            <div className='flex flex-col w-full '>
-              {/* <Navbar /> */}
-              <AuthCheck userToken={userToken}>{children}</AuthCheck>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <div className='flex w-screen bg-[#F5F7F8]'>
+              <SdSidebar />
+              <div className='flex flex-col w-full '>
+                {/* <Navbar /> */}
+                <AuthCheck userToken={userToken}>{children}</AuthCheck>
+              </div>
             </div>
-          </div>
-        </SidebarProvider>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
