@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { signOut } from '@/actions'
 import { useTheme } from 'next-themes';
+import ThemeSelectorButton from './ThemeSelectorButton';
 
 const studentItems = [
     {
@@ -133,6 +134,7 @@ export function SdSidebar() {
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
+                <ThemeSelectorButton />
                 <SidebarFooter className='dark:bg-neutral-900'>
                     <SidebarMenu>
                         <SidebarMenuItem>

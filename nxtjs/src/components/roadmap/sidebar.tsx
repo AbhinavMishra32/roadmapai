@@ -28,7 +28,7 @@ import {
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { api } from "@/services/axios"
-import { useNavigate } from "react-router-dom"
+import { useRouter } from "next/navigation";
 
 interface SidebarProps {
   selectedNode: MindMapNode | null
@@ -74,7 +74,7 @@ const filterCounsellors = async (description: string) => {
 const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
   const [counsellors, setCounsellors] = useState([])
   const [loading, setLoading] = useState(true)
-  const navigate = useNavigate()
+  const router = useRouter()
 
   useEffect(() => {
     const fetchCounsellors = async () => {

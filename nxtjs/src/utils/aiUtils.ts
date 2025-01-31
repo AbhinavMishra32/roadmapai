@@ -4,9 +4,10 @@ import { initialEdges, initialNodes } from '@/data/mindmap-data'
 import { useEffect } from 'react'
 import { api } from '@/services/axios'
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY as string
+const GEMINI_API_KEY = process.env.NEXT_GEMINI_API_KEY as string
+console.log("GEMINI API KEY: ", GEMINI_API_KEY);
 if (!GEMINI_API_KEY) {
-  throw new Error("Missing GEMINI_API_KEY in environment variables")
+  throw new Error("Missing NEXT_GEMINI_API_KEY in environment variables")
 }
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)

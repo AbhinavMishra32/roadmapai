@@ -13,6 +13,7 @@ import ReactFlow, {
     Position,
     addEdge,
     SelectionMode,
+    ReactFlowProvider,
 } from "reactflow"
 import dagre from "dagre"
 import "reactflow/dist/style.css";
@@ -187,30 +188,30 @@ const CareerPossibilities = () => {
                     {isGenerating ? (
                         <LoadingAnimationPage />
                     ) : (
-                        <ReactFlow
-                            nodes={nodes}
-                            edges={edges}
-                            onNodesChange={onNodesChange}
-                            onEdgesChange={onEdgesChange}
-                            onInit={onInit}
-                            onConnect={onConnect}
-                            onNodeClick={onNodeClick}
-                            onPaneClick={onPaneClick}
-                            nodeTypes={nodeTypes}
-                            panOnScroll
-                            selectionMode={SelectionMode.Full}
-                            selectionOnDrag={true}
-                            multiSelectionKeyCode="Control"
-                            fitView
-                            minZoom={0.5}
-                            maxZoom={1.5}
-                            defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
-                            attributionPosition="bottom-left"
-                            className="bg-gray-50 dark:bg-neutral-950"
-                        >
-                            <Controls />
-                            <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
-                        </ReactFlow>
+                            <ReactFlow
+                                nodes={nodes}
+                                edges={edges}
+                                onNodesChange={onNodesChange}
+                                onEdgesChange={onEdgesChange}
+                                onInit={onInit}
+                                onConnect={onConnect}
+                                onNodeClick={onNodeClick}
+                                onPaneClick={onPaneClick}
+                                nodeTypes={nodeTypes}
+                                panOnScroll
+                                selectionMode={SelectionMode.Full}
+                                selectionOnDrag={true}
+                                multiSelectionKeyCode="Control"
+                                fitView
+                                minZoom={0.5}
+                                maxZoom={1.5}
+                                defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
+                                attributionPosition="bottom-left"
+                                className="bg-gray-50 dark:bg-neutral-950"
+                            >
+                                <Controls />
+                                <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
+                            </ReactFlow>
                     )}
                 </div>
                 <div>
@@ -237,5 +238,9 @@ export const useSelectedNode = (initialNode: MindMapNode | null = null) => {
 
     return selectedNodeState;
 };
+
+// function Flow(props) {
+//     const reactFlowInstance = useReactFlow
+// }
 
 export default CareerPossibilities
