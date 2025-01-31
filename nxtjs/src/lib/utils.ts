@@ -1,5 +1,6 @@
+"use client"
 import { clsx, type ClassValue } from "clsx"
-import { cookies } from "next/headers";
+import Cookies from 'js-cookie';
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge"
 
@@ -10,8 +11,7 @@ export function cn(...inputs: ClassValue[]) {
 export function useCheckUserToken() {
   const router = useRouter();
   return async () => {
-    const cookieStore = await cookies();
-    const userToken = cookieStore.get('userToken');
+    const userToken = Cookies.get('userToken');
     if (!userToken) {
       router.push('/signin');
     }

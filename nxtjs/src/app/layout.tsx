@@ -33,15 +33,17 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <SidebarProvider>
-        <div className='flex w-screen bg-[#F5F7F8]'>
-          <SdSidebar />
-          <div className='flex flex-col w-full '>
-            {/* <Navbar /> */}
-            <AuthCheck userToken={userToken}>{children}</AuthCheck>
+      <body>
+        <SidebarProvider>
+          <div className='flex w-screen bg-[#F5F7F8]'>
+            <SdSidebar />
+            <div className='flex flex-col w-full '>
+              {/* <Navbar /> */}
+              <AuthCheck userToken={userToken}>{children}</AuthCheck>
+            </div>
           </div>
-        </div>
-      </SidebarProvider>
+        </SidebarProvider>
+      </body>
     </html>
   );
   {/* <body

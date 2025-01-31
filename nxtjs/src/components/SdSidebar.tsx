@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { Brain, CircuitBoardIcon, BrainCircuit, Briefcase, Calendar, ChevronUp, CircuitBoard, HelpingHand, Home, Settings, User, User2, BedDouble, Lightbulb, StarsIcon, GrapeIcon, IndentIncrease, DumbbellIcon as BicepsFlexed, Dumbbell, Search, BlocksIcon, Route, RouteIcon, HardHat, GraduationCap, Volume2, VolumeX } from 'lucide-react'
 
@@ -15,12 +15,13 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 import { api } from "@/services/axios"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { cookies } from 'next/headers'
+import { signOut } from '@/actions'
 
 const studentItems = [
     {
@@ -58,18 +59,19 @@ const counsellorItems = [
     }
 ]
 
-const signOut = async () => {
-    const cookieStore = await cookies();
-    console.log(cookies);
-    cookieStore.set('token', '', { expires: new Date(0) });
-    cookieStore.set('userToken', '', { expires: new Date(0) });
+
+const handleSignOut = async () => {
+    // await signOut();
+    Cookies.remove('token');
+    Cookies.remove('userToken');
     window.location.href = '/';
 }
 
 export function SdSidebar() {
     const [user, setUser] = useState<{ username: string; email: string; accountType: string } | null>(null);
     const [loadingUser, setLoadingUser] = useState(true);
-    const url = window.location.pathname;
+    const router = useRouter();
+    const url = usePathname();
 
 
 
@@ -92,7 +94,6 @@ export function SdSidebar() {
             console.log(error);
         }
     }, [])
-    const router = useRouter();
     const handleSidebarClick = (index: number) => {
         const items = user?.accountType === 'student' ? studentItems : counsellorItems;
         if (index < items.length) {
@@ -150,7 +151,7 @@ export function SdSidebar() {
                                     {/* <DropdownMenuItem>
                                         <span>Billing</span>
                                     </DropdownMenuItem> */}
-                                    <DropdownMenuItem onClick={() => signOut()}>
+                                    <DropdownMenuItem onClick={handleSignOut}>
                                         <span>Sign out</span>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
