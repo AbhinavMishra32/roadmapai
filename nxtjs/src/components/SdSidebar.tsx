@@ -1,6 +1,6 @@
 "use client"
 
-import { Brain, CircuitBoardIcon, BrainCircuit, Briefcase, Calendar, ChevronUp, CircuitBoard, HelpingHand, Home, Settings, User, User2, BedDouble, Lightbulb, StarsIcon, GrapeIcon, IndentIncrease, DumbbellIcon as BicepsFlexed, Dumbbell, Search, BlocksIcon, Route, RouteIcon, HardHat, GraduationCap, Volume2, VolumeX } from 'lucide-react'
+import { Brain, CircuitBoardIcon, BrainCircuit, Briefcase, Calendar, ChevronUp, CircuitBoard, HelpingHand, Home, Settings, User, User2, BedDouble, Lightbulb, StarsIcon, GrapeIcon, IndentIncrease, DumbbellIcon as BicepsFlexed, Dumbbell, Search, BlocksIcon, Route, RouteIcon, HardHat, GraduationCap, Volume2, VolumeX, Sun, Moon } from 'lucide-react'
 
 import {
     Sidebar,
@@ -22,6 +22,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { signOut } from '@/actions'
+import { useTheme } from 'next-themes';
 
 const studentItems = [
     {
@@ -72,6 +73,7 @@ export function SdSidebar() {
     const [loadingUser, setLoadingUser] = useState(true);
     const router = useRouter();
     const url = usePathname();
+    const { setTheme } = useTheme();
 
 
 
@@ -94,6 +96,7 @@ export function SdSidebar() {
             console.log(error);
         }
     }, [])
+
     const handleSidebarClick = (index: number) => {
         const items = user?.accountType === 'student' ? studentItems : counsellorItems;
         if (index < items.length) {

@@ -28,23 +28,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const cookieStore = await cookies();
   const userToken = cookieStore.get('userToken')?.value || null;
 
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <ThemeProvider>
           <SidebarProvider>
-            <div className='flex w-screen bg-[#F5F7F8]'>
+            <div className='flex w-screen bg-[#F5F7F8] dark:bg-neutral-900'>
               <SdSidebar />
-              <div className='flex flex-col w-full '>
+              <div className='flex flex-col w-full'>
                 {/* <Navbar /> */}
                 <AuthCheck userToken={userToken}>{children}</AuthCheck>
               </div>
