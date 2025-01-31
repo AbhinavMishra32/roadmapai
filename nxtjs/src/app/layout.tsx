@@ -30,13 +30,14 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const userToken = cookieStore.get('userToken')?.value || null;
+  console.log(cookieStore.get('userToken')?.value);
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="en">
+      <body>
         <ThemeProvider>
           <SidebarProvider>
-            <div className='flex w-screen bg-[#F5F7F8] dark:bg-neutral-900'>
+            <div className='flex w-screen'>
               <SdSidebar />
               <div className='flex flex-col w-full'>
                 {/* <Navbar /> */}

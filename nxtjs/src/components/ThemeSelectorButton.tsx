@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Moon, MoonIcon, Sun } from "lucide-react"
+import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -13,7 +13,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export default function ThemeSelectorButton() {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <DropdownMenu>
@@ -25,14 +34,23 @@ export default function ThemeSelectorButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+        <DropdownMenuItem 
+          onClick={() => setTheme("light")}
+          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          Light {theme === 'light' && '✓'}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+        <DropdownMenuItem 
+          onClick={() => setTheme("dark")}
+          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          Dark {theme === 'dark' && '✓'}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+        <DropdownMenuItem 
+          onClick={() => setTheme("system")}
+          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          System {theme === 'system' && '✓'}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
