@@ -18,6 +18,7 @@ import { usePathname, useRouter } from "next/navigation";
 import ThemeSelectorButton from './ThemeSelectorButton';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
+import { useTheme } from 'next-themes';
 
 const sidebarRoutes = [
     {
@@ -36,6 +37,7 @@ export function SdSidebar() {
     const { user, isLoaded } = useUser();
     const router = useRouter();
     const url = usePathname();
+    const { theme } = useTheme();
 
     const handleSidebarClick = (index: number) => {
         const items = sidebarRoutes;
@@ -79,9 +81,10 @@ export function SdSidebar() {
                         <div className="pl-3 pr-1 flex items-center justify-center">
                             <UserButton
                                 appearance={{
-                                    baseTheme: dark,
+                                    baseTheme: theme === "dark" ? dark : undefined,
                                     elements: { userButtonAvatarBox: "w-8 h-8" },
                                 }}
+                                userProfileProps={{ appearance: { baseTheme: theme === "dark" ? dark : undefined } }}
                             />
                         </div>
                         <div className="flex flex-col">

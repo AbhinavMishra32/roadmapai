@@ -24,12 +24,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const userToken = cookieStore.get('userToken')?.value || null;
-  console.log(cookieStore.get('userToken')?.value);
-
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <ClerkProvider appearance={{ baseTheme: undefined }}>
       <html lang="en">
         <body>
           <ThemeProvider>
