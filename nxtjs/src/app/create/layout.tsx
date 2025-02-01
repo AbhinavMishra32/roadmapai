@@ -6,11 +6,11 @@ import { ReactFlowProvider } from "reactflow";
 export default function RoadmapLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <ThemeProvider>
+            {/* <ThemeProvider> */}
                 <ReactFlowProvider>
                     {children}
                 </ReactFlowProvider>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
         </>
     )
 }

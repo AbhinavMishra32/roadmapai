@@ -28,7 +28,7 @@ import ThemeSelectorButton from './ThemeSelectorButton';
 const studentItems = [
     {
         title: "AI Career Roadmap",
-        url: "/careerroadmap",
+        url: "/create",
         icon: RouteIcon,
     },
     {
@@ -64,39 +64,42 @@ const counsellorItems = [
 
 const handleSignOut = async () => {
     // await signOut();
-    Cookies.remove('token');
-    Cookies.remove('userToken');
-    window.location.href = '/';
+    // Cookies.remove('token');
+    // Cookies.remove('userToken');
+    // window.location.href = '/';
+}
+
+const defaultUser = {
+    username: "Temp Account",
+    email: "email@email.com",
+    accountType: "student"
 }
 
 export function SdSidebar() {
-    const [user, setUser] = useState<{ username: string; email: string; accountType: string } | null>(null);
-    const [loadingUser, setLoadingUser] = useState(true);
+    const [user, setUser] = useState<{ username: string; email: string; accountType: string } | null>(defaultUser);
+    const [loadingUser, setLoadingUser] = useState(false);
     const router = useRouter();
     const url = usePathname();
-    const { setTheme } = useTheme();
 
-
-
-    useEffect(() => {
-        try {
-            const fetchUser = async () => {
-                try {
-                    const response = await api.get('/api/user');
-                    setUser({ username: response.data.user.username, email: response.data.user.email, accountType: response.data.accountType });
-                } catch (error) {
-                    console.error("Failed to fetch user:", error);
-                }
-                finally {
-                    setLoadingUser(false);
-                    console.log("User: ", user);
-                }
-            };
-            fetchUser();
-        } catch (error) {
-            console.log(error);
-        }
-    }, [])
+    // useEffect(() => {
+    //     try {
+    //         const fetchUser = async () => {
+    //             try {
+    //                 const response = await api.get('/api/user');
+    //                 setUser({ username: response.data.user.username, email: response.data.user.email, accountType: response.data.accountType });
+    //             } catch (error) {
+    //                 console.error("Failed to fetch user:", error);
+    //             }
+    //             finally {
+    //                 setLoadingUser(false);
+    //                 console.log("User: ", user);
+    //             }
+    //         };
+    //         fetchUser();
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }, [])
 
     const handleSidebarClick = (index: number) => {
         const items = user?.accountType === 'student' ? studentItems : counsellorItems;

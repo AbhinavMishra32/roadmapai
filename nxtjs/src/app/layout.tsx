@@ -41,7 +41,7 @@ export default async function RootLayout({
               <SdSidebar />
               <div className='flex flex-col w-full'>
                 {/* <Navbar /> */}
-                <AuthCheck userToken={userToken}>{children}</AuthCheck>
+                {/* <AuthCheck userToken={userToken}>{children}</AuthCheck> */}
               </div>
             </div>
           </SidebarProvider>
