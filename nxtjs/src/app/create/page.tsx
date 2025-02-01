@@ -26,6 +26,7 @@ import { type MindMapNode, MindMapEdge } from "../types"
 import LoadingAnimationPage from "@/components/roadmap/LoadingAnimationPage"
 import { AnimatePresence } from "framer-motion"
 import { CareerDock } from "../../components/roadmap/dock"
+import { useTheme } from "next-themes";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -78,6 +79,7 @@ const CareerPossibilities = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
   const { getNode, getEdges, setEdges: setEdgesReactFlow } = useReactFlow()
+  const { theme } = useTheme();
 
   const resetSelection = useCallback(() => {
     setSelectedNode(null)
@@ -174,11 +176,12 @@ const CareerPossibilities = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full h-screen bg-neutral-600">
+      {theme === "dark" && <p className="text-black">yooo its dark</p>}
+      <div className="flex flex-col w-full h-screen dark:bg-neutral-600">
         <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
           <ControlsComponent
             onGenerateNewMindMap={generateNewMindMap}
-            isGenerating={isGenerating}
+            isGenerating={isGenerating} bg-
             isInitialized={isInitialized}
             selectedNode={selectedNode}
           />
