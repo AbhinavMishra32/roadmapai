@@ -7,9 +7,9 @@ export default function RoadmapLayout({ children }: { children: React.ReactNode 
     return (
         <>
             {/* <ThemeProvider> */}
-                <ReactFlowProvider>
-                    {children}
-                </ReactFlowProvider>
+            <ReactFlowProvider>
+                {children}
+            </ReactFlowProvider>
             {/* </ThemeProvider> */}
         </>
     )

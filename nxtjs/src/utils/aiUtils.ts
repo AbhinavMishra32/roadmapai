@@ -7,7 +7,7 @@ import { api } from '@/services/axios'
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
 console.log("GEMINI API KEY: ", GEMINI_API_KEY);
 if (!GEMINI_API_KEY) {
-  throw new Error("Missing NEXT_GEMINI_API_KEY in environment variables")
+  throw new Error("Missing NEXT_PUBLIC_GEMINI_API_KEY in environment variables")
 }
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
@@ -206,7 +206,7 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
     },
     required: ["aiNodes", "aiEdges"]
   };
-  
+
   const safetySettings = [
     {
       category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
