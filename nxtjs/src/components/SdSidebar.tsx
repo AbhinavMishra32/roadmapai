@@ -25,6 +25,7 @@ import { signOut } from '@/actions'
 import { useTheme } from 'next-themes';
 import ThemeSelectorButton from './ThemeSelectorButton';
 import { UserButton } from '@clerk/nextjs';
+import { dark } from '@clerk/themes';
 
 const studentItems = [
     {
@@ -81,6 +82,7 @@ export function SdSidebar() {
     const [loadingUser, setLoadingUser] = useState(false);
     const router = useRouter();
     const url = usePathname();
+    const { theme } = useTheme();
 
     // useEffect(() => {
     //     try {
@@ -141,6 +143,7 @@ export function SdSidebar() {
                 <ThemeSelectorButton />
                 <SidebarFooter className='dark:bg-neutral-900'>
                     <UserButton showName appearance={{
+                        baseTheme: theme === "dark" ? dark : undefined,
                         elements: {
                             formFieldRadioLabelTitle__username: { color: 'white' },
                         }
