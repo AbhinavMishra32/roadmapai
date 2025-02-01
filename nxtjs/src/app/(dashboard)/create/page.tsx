@@ -17,15 +17,16 @@ import ReactFlow, {
 import dagre from "dagre"
 import "reactflow/dist/style.css"
 
-import CustomNode from "../../components/roadmap/custom-node"
-import Sidebar from "../../components/roadmap/sidebar"
-import ControlsComponent from "../../components/roadmap/controls"
+import CustomNode from "../../../components/roadmap/custom-node"
+import Sidebar from "../../../components/roadmap/sidebar"
+import ControlsComponent from "../../../components/roadmap/controls"
 
 import { generateMindMapData } from "@/utils/aiUtils"
-import { type MindMapNode, MindMapEdge } from "../types"
+import { type MindMapNode, MindMapEdge } from "../../types"
 import LoadingAnimationPage from "@/components/roadmap/LoadingAnimationPage"
 import { AnimatePresence } from "framer-motion"
-import { CareerDock } from "../../components/roadmap/dock"
+import { CareerDock } from "../../../components/roadmap/dock"
+import { useTheme } from "next-themes";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -78,6 +79,7 @@ const CareerPossibilities = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
   const { getNode, getEdges, setEdges: setEdgesReactFlow } = useReactFlow()
+  const { theme } = useTheme();
 
   const resetSelection = useCallback(() => {
     setSelectedNode(null)
@@ -174,55 +176,56 @@ const CareerPossibilities = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full h-screen bg-neutral-600">
-      <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
-        <ControlsComponent
-        onGenerateNewMindMap={generateNewMindMap}
-        isGenerating={isGenerating}
-        isInitialized={isInitialized}
-        selectedNode={selectedNode}
-        />
-      </div>
-      <div className="flex-grow relative">
-        {isGenerating ? (
-        <LoadingAnimationPage />
-        ) : (
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onInit={onInit}
-          onConnect={onConnect}
-          onNodeClick={onNodeClick}
-          onPaneClick={onPaneClick}
-          nodeTypes={nodeTypes}
-          panOnScroll
-          selectionMode={SelectionMode.Full}
-          selectionOnDrag={true}
-          multiSelectionKeyCode="Control"
-          fitView
-          minZoom={0.5}
-          maxZoom={1.5}
-          defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
-          attributionPosition="bottom-left"
-          className="bg-gray-50 dark:bg-neutral-950"
-        >
-          <Controls />
-          <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
-        </ReactFlow>
-        )}
-      </div>
-      <div>
-        <AnimatePresence>
-        {selectedNode && (
-          <div className="p-4 border-t border-gray-200 dark:border-neutral-800">
-          <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
-          </div>
-        )}
-        </AnimatePresence>
-      </div>
-      <CareerDock selectedNode={selectedNode} />
+      {theme === "dark" && <p className="text-black">yooo its dark</p>}
+      <div className="flex flex-col w-full h-screen dark:bg-neutral-600">
+        <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
+          <ControlsComponent
+            onGenerateNewMindMap={generateNewMindMap}
+            isGenerating={isGenerating} bg-
+            isInitialized={isInitialized}
+            selectedNode={selectedNode}
+          />
+        </div>
+        <div className="flex-grow relative">
+          {isGenerating ? (
+            <LoadingAnimationPage />
+          ) : (
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onInit={onInit}
+              onConnect={onConnect}
+              onNodeClick={onNodeClick}
+              onPaneClick={onPaneClick}
+              nodeTypes={nodeTypes}
+              panOnScroll
+              selectionMode={SelectionMode.Full}
+              selectionOnDrag={true}
+              multiSelectionKeyCode="Control"
+              fitView
+              minZoom={0.5}
+              maxZoom={1.5}
+              defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
+              attributionPosition="bottom-left"
+              className="bg-gray-50 dark:bg-neutral-950"
+            >
+              <Controls />
+              <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
+            </ReactFlow>
+          )}
+        </div>
+        <div>
+          <AnimatePresence>
+            {selectedNode && (
+              <div className="p-4 border border-gray-200 dark:border-neutral-800">
+                <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
+              </div>
+            )}
+          </AnimatePresence>
+        </div>
+        <CareerDock selectedNode={selectedNode} />
       </div>
     </>
   )

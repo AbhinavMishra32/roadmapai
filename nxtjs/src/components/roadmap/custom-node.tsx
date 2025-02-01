@@ -81,11 +81,10 @@ function CustomNode({
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className={`group relative px-4 py-3 shadow-md dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-          data.isHighlighted
-            ? "border-red-400 dark:border-indigo-500 bg-red-50 dark:bg-indigo-700/10 backdrop-blur-sm"
-            : "border-gray-200 dark:border-neutral-700 dark:border-2 bg-white dark:bg-neutral-900/10 backdrop-blur-sm"
-        } ${data.isExpanded ? "scale-110 shadow-lg dark:shadow-2xl" : ""}`}
+        className={`group relative px-4 py-3 shadow-md dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border border-neutral-300 transition-all duration-300 hover:shadow-lg hover:scale-105 ${data.isHighlighted
+          ? "border-red-400 dark:border-2 dark:border-indigo-500 bg-red-50 dark:bg-indigo-700/10 backdrop-blur-sm"
+          : "border-gray-200 dark:border-neutral-700 dark:border-2 bg-white dark:bg-neutral-900/10 backdrop-blur-sm"
+          } ${data.isExpanded ? "scale-110 shadow-lg dark:shadow-2xl" : ""}`}
         style={{
           width: data.isExpanded ? "240px" : "220px",
           fontSize: "3.75rem",
@@ -97,9 +96,8 @@ function CustomNode({
           type="target"
           position={Position.Left}
           isConnectable={isConnectable}
-          className={`!w-3 !h-3 !-left-1.5 !border-2 !border-white ${
-            data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
-          }`}
+          className={`!w-3 !h-3 !-left-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
+            }`}
         />
         <AnimatePresence>
           {data.isExpanded && hovered && (
@@ -146,11 +144,10 @@ function CustomNode({
               {data.nextSteps.map((step, index) => (
                 <span
                   key={index}
-                  className={`px-2 py-0.5 rounded-full text-xs font-medium dark:border-indigo-900 dark:border-[1px] backdrop-blur-3xl ${
-                    data.isHighlighted
-                      ? "bg-red-100 dark:bg-indigo-900/50 text-red-800 dark:text-gray-200"
-                      : "bg-yellow-100 dark:bg-indigo-900/30 text-yellow-800 dark:text-gray-300"
-                  }`}
+                  className={`px-2 py-0.5 rounded-full text-xs font-medium dark:border-indigo-900 dark:border-[1px] backdrop-blur-3xl ${data.isHighlighted
+                    ? "bg-red-100 dark:bg-indigo-900/50 text-red-800 dark:text-gray-200"
+                    : "bg-yellow-100 dark:bg-indigo-900/30 text-yellow-800 dark:text-gray-300"
+                    }`}
                 >
                   {step}
                 </span>
@@ -163,9 +160,8 @@ function CustomNode({
           type="source"
           position={Position.Right}
           isConnectable={isConnectable}
-          className={`!w-3 !h-3 !-right-1.5 !border-2 !border-white ${
-            data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
-          }`}
+          className={`!w-3 !h-3 !-right-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
+            }`}
         />
       </motion.div>
     </AnimatePresence>
