@@ -14,20 +14,12 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { useEffect, useState } from "react";
-import Cookies from 'js-cookie';
-import { api } from "@/services/axios"
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { signOut } from '@/actions'
-import { useTheme } from 'next-themes';
 import ThemeSelectorButton from './ThemeSelectorButton';
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 
-const studentItems = [
+const sidebarRoutes = [
     {
         title: "AI Career Roadmap",
         url: "/create",
@@ -40,72 +32,13 @@ const studentItems = [
     }
 ]
 
-const counsellorItems = [
-    {
-        title: "Home",
-        url: "/cdashboard",
-        icon: Home,
-    },
-    {
-        title: "Counsel Students",
-        url: "/counselchat",
-        icon: HelpingHand
-    },
-    {
-        title: "Add A Lesson",
-        url: "/addlesson",
-        icon: IndentIncrease
-    },
-    {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar
-    }
-]
-
-
-const handleSignOut = async () => {
-    // await signOut();
-    // Cookies.remove('token');
-    // Cookies.remove('userToken');
-    // window.location.href = '/';
-}
-
-const defaultUser = {
-    username: "Temp Account",
-    email: "email@email.com",
-    accountType: "student"
-}
-
 export function SdSidebar() {
-    const [user, setUser] = useState<{ username: string; email: string; accountType: string } | null>(defaultUser);
-    const [loadingUser, setLoadingUser] = useState(false);
+    const { user, isLoaded } = useUser();
     const router = useRouter();
     const url = usePathname();
-    const { theme } = useTheme();
-
-    // useEffect(() => {
-    //     try {
-    //         const fetchUser = async () => {
-    //             try {
-    //                 const response = await api.get('/api/user');
-    //                 setUser({ username: response.data.user.username, email: response.data.user.email, accountType: response.data.accountType });
-    //             } catch (error) {
-    //                 console.error("Failed to fetch user:", error);
-    //             }
-    //             finally {
-    //                 setLoadingUser(false);
-    //                 console.log("User: ", user);
-    //             }
-    //         };
-    //         fetchUser();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }, [])
 
     const handleSidebarClick = (index: number) => {
-        const items = user?.accountType === 'student' ? studentItems : counsellorItems;
+        const items = sidebarRoutes;
         if (index < items.length) {
             router.push(items[index].url);
         }
@@ -113,7 +46,7 @@ export function SdSidebar() {
 
     return (
         <>
-            <Sidebar className="rounded-3xl duration-70000 overflow-hidden shadow-xl hover:shadow-2xl transition-all ease-in">
+            <Sidebar className="duration-70000 overflow-hidden shadow-xl hover:shadow-2xl transition-all ease-in">
                 <SidebarHeader className="p-2 dark:bg-neutral-900">
                     <div className="flex items-center gap-2">
                         <h3 className='text-2xl'>Logo</h3>
@@ -123,9 +56,9 @@ export function SdSidebar() {
                     <SidebarGroup>
                         {/* <SidebarGroupLabel>Pages</SidebarGroupLabel> */}
                         <SidebarGroupContent>
-                            {!loadingUser && (
+                            {isLoaded && (
                                 <SidebarMenu>
-                                    {(user?.accountType === 'student' ? studentItems : counsellorItems).map((item, index) => (
+                                    {sidebarRoutes.map((item, index) => (
                                         <SidebarMenuItem key={item.title} className="px-1">
                                             <SidebarMenuButton asChild isActive={url === item.url || (item.url !== '/' && url.startsWith(item.url) && !url.startsWith(`${item.url}training`))} className="py-5 pl-4 rounded-xl" onClick={() => handleSidebarClick(index)}>
                                                 <a href={item.url}>
@@ -139,36 +72,23 @@ export function SdSidebar() {
                             )}
                         </SidebarGroupContent>
                     </SidebarGroup>
+                    <ThemeSelectorButton />
                 </SidebarContent>
-                <ThemeSelectorButton />
-                <SidebarFooter className='dark:bg-neutral-900'>
-                    <UserButton showName appearance={{
-                        baseTheme: theme === "dark" ? dark : undefined,
-                        elements: {
-                            formFieldRadioLabelTitle__username: { color: 'white' },
-                        }
-                    }} />
-                    {/* <SidebarMenu>
-                        <SidebarMenuItem>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild></DropdownMenuTrigger>
-                                <DropdownMenuTrigger asChild>
-                                    <SidebarMenuButton>
-                                        <User2 /> {user?.username}
-                                        <ChevronUp className="ml-auto" />
-                                    </SidebarMenuButton>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent
-                                    side="top"
-                                    className="w-[--radix-popper-anchor-width]"
-                                >
-                                    <DropdownMenuItem onClick={handleSignOut}>
-                                        <span>Sign out</span>
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </SidebarMenuItem>
-                    </SidebarMenu> */}
+                <SidebarFooter className='border-t-2 dark:bg-neutral-900'>
+                    <div className="flex gap-2 pl-1 pr-2 pt-2 mb-2 rounded-xl">
+                        <div className="pl-3 pr-1 flex items-center justify-center">
+                            <UserButton
+                                appearance={{
+                                    baseTheme: dark,
+                                    elements: { userButtonAvatarBox: "w-8 h-8" },
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <p className="text-gray-500 dark:text-gray-400 text-xs">Free account</p>
+                            <p className="text-gray-700 dark:text-white text-sm">{user?.username || user?.fullName}</p>
+                        </div>
+                    </div>
                 </SidebarFooter>
             </Sidebar>
         </>
