@@ -17,15 +17,15 @@ import ReactFlow, {
 import dagre from "dagre"
 import "reactflow/dist/style.css"
 
-import CustomNode from "../../components/roadmap/custom-node"
-import Sidebar from "../../components/roadmap/sidebar"
-import ControlsComponent from "../../components/roadmap/controls"
+import CustomNode from "../../../components/roadmap/custom-node"
+import Sidebar from "../../../components/roadmap/sidebar"
+import ControlsComponent from "../../../components/roadmap/controls"
 
 import { generateMindMapData } from "@/utils/aiUtils"
-import { type MindMapNode, MindMapEdge } from "../types"
+import { type MindMapNode, MindMapEdge } from "../../types"
 import LoadingAnimationPage from "@/components/roadmap/LoadingAnimationPage"
 import { AnimatePresence } from "framer-motion"
-import { CareerDock } from "../../components/roadmap/dock"
+import { CareerDock } from "../../../components/roadmap/dock"
 import { useTheme } from "next-themes";
 
 const dagreGraph = new dagre.graphlib.Graph()
@@ -219,7 +219,7 @@ const CareerPossibilities = () => {
         <div>
           <AnimatePresence>
             {selectedNode && (
-              <div className="p-4 border-t border-gray-200 dark:border-neutral-800">
+              <div className="p-4 border border-gray-200 dark:border-neutral-800">
                 <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
               </div>
             )}

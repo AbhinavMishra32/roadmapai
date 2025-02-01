@@ -24,6 +24,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { signOut } from '@/actions'
 import { useTheme } from 'next-themes';
 import ThemeSelectorButton from './ThemeSelectorButton';
+import { UserButton } from '@clerk/nextjs';
 
 const studentItems = [
     {
@@ -139,7 +140,12 @@ export function SdSidebar() {
                 </SidebarContent>
                 <ThemeSelectorButton />
                 <SidebarFooter className='dark:bg-neutral-900'>
-                    <SidebarMenu>
+                    <UserButton showName appearance={{
+                        elements: {
+                            formFieldRadioLabelTitle__username: { color: 'white' },
+                        }
+                    }} />
+                    {/* <SidebarMenu>
                         <SidebarMenuItem>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild></DropdownMenuTrigger>
@@ -153,19 +159,13 @@ export function SdSidebar() {
                                     side="top"
                                     className="w-[--radix-popper-anchor-width]"
                                 >
-                                    {/* <DropdownMenuItem>
-                                        <span>Account</span>
-                                    </DropdownMenuItem> */}
-                                    {/* <DropdownMenuItem>
-                                        <span>Billing</span>
-                                    </DropdownMenuItem> */}
                                     <DropdownMenuItem onClick={handleSignOut}>
                                         <span>Sign out</span>
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </SidebarMenuItem>
-                    </SidebarMenu>
+                    </SidebarMenu> */}
                 </SidebarFooter>
             </Sidebar>
         </>
