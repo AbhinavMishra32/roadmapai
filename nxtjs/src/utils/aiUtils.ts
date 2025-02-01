@@ -4,7 +4,7 @@ import { initialEdges, initialNodes } from '@/data/mindmap-data'
 import { useEffect } from 'react'
 import { api } from '@/services/axios'
 
-const GEMINI_API_KEY = process.env.NEXT_GEMINI_API_KEY as string
+const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
 console.log("GEMINI API KEY: ", GEMINI_API_KEY);
 if (!GEMINI_API_KEY) {
   throw new Error("Missing NEXT_GEMINI_API_KEY in environment variables")

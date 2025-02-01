@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "age": 28,
+    "role": "Software Developer",
+    "location": "San Francisco",
+    "joinDate": "2023-01-15"
+  },
+  {
+    "id": 2,
+    "name": "Alice Smith",
+    "email": "alice.smith@example.com",
+    "age": 32,
+    "role": "Product Manager",
+    "location": "New York",
+    "joinDate": "2023-03-20"
+  },
+  {
+    "id": 3,
+    "name": "Bob Johnson",
+    "email": "bob.johnson@example.com",
+    "age": 25,
+    "role": "UI Designer",
+    "location": "Chicago",
+    "joinDate": "2023-06-05"
+  }
+]
