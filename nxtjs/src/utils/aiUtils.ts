@@ -100,7 +100,8 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
   Requirements for nodes:
   - Unique string IDs (e.g., names of nodes in natural english)
   - type: 'customNode'
-  - icon from this list: briefcase, book, code, server, cloud, users, school, building, chart, Briefcase, Stethoscope, Code, Gavel, Mic, Paintbrush, Calculator, Book, Tool, Camera, Cutlery, Wrench, Flask, Music, Globe, DollarSign, Airplane, Tree, Package, Heart
+  - icon from this list:   
+    Briefcase, Book, Server, Cloud, Users, School, Building, Chart, Stethoscope, Code, Gavel, Mic, Paintbrush, Calculator, Tool, Camera, Cutlery, Wrench, Flask, Music, Globe, DollarSign, Airplane, Tree, Package, Heart,
   - Meaningful and specific descriptions related to the chosen category (5-6 sentences).
   - Realistic timeEstimates
   - Relevant nextSteps array
