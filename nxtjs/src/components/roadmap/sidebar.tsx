@@ -1,7 +1,5 @@
 "use client";
-
 import type React from "react";
-import { useEffect, useState } from "react";
 import type { MindMapNode } from "@/types";
 import {
   Briefcase,
@@ -28,8 +26,6 @@ import {
   Heart,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { api } from "@/services/axios"
-import { useRouter } from "next/navigation";
 
 interface SidebarProps {
   selectedNode: MindMapNode | null
@@ -65,6 +61,7 @@ const icons = {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
+  console.log("sidebar is rendering")
   let IconComponent = Briefcase;
   try {
     IconComponent = selectedNode?.data.icon ? icons[selectedNode.data.icon as keyof typeof icons] : Briefcase;
@@ -81,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
   try {
     return (
       <div
-        className={`fixed right-0 top-1/2 -translate-y-1/2 w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-[0_0px_60px_14px_rgba(0,0,0,0.6)] border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4 transition-all duration-300 ease-in-out ${selectedNode ? "translate-x-0" : "translate-x-full"
+        className={`fixed z-50 right-0 top-1/2 -translate-y-1/2 w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-[0_0px_60px_14px_rgba(0,0,0,0.6)] border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4 transition-all duration-300 ease-in-out ${selectedNode ? "translate-x-0" : "translate-x-full"
           }`}
         style={{
           scrollbarWidth: 'thin',

@@ -5,12 +5,8 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { motion } from "framer-motion"
 
 export default function ThemeSelectorButton() {
   const { theme, setTheme } = useTheme()
@@ -27,32 +23,59 @@ export default function ThemeSelectorButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-12 w-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-100 to-pink-100 dark:from-blue-900 dark:to-purple-900 transition-all duration-300"
+        >
+          <div className="relative w-full h-full">
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              initial={false}
+              animate={{
+                rotate: theme === "dark" ? 180 : 0,
+                scale: theme === "dark" ? 0 : 1,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <Sun className="h-6 w-6 text-yellow-500 filter drop-shadow" />
+            </motion.div>
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              initial={false}
+              animate={{
+                rotate: theme === "dark" ? 0 : -180,
+                scale: theme === "dark" ? 1 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <Moon className="h-6 w-6 text-blue-300 filter drop-shadow" />
+            </motion.div>
+          </div>
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem 
+      <DropdownMenuContent align="end" className="rounded-xl shadow-lg dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)]">
+        <DropdownMenuItem
           onClick={() => setTheme("light")}
-          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+          className={`cursor-pointer rounded-lg ${theme === "light" ? "bg-gray-100 dark:bg-neutral-800" : "hover:bg-gray-100 dark:hover:bg-neutral-800"}`}
         >
-          Light {theme === 'light' && '✓'}
+          Light
         </DropdownMenuItem>
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={() => setTheme("dark")}
-          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+          className={`cursor-pointer rounded-lg ${theme === "dark" ? "bg-gray-100 dark:bg-neutral-800" : "hover:bg-gray-100 dark:hover:bg-neutral-800"}`}
         >
-          Dark {theme === 'dark' && '✓'}
+          Dark
         </DropdownMenuItem>
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={() => setTheme("system")}
-          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+          className={`cursor-pointer rounded-lg ${theme === "system" ? "bg-gray-100 dark:bg-neutral-800" : "hover:bg-gray-100 dark:hover:bg-neutral-800"}`}
         >
-          System {theme === 'system' && '✓'}
+          System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
+

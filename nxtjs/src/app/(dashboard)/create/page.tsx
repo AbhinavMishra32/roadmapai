@@ -161,7 +161,6 @@ const CareerPossibilities = () => {
       setIsInitialized(true)
       try {
         const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, loadData: true})
-        console.log("Generated new mind map:", { initialNodes, initialEdges })
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
         setEdges(layoutedEdges)
@@ -181,7 +180,7 @@ const CareerPossibilities = () => {
       {selectedNode && (
         <TaskDisplay selectedNode={selectedNode} />
       )}
-      <div className="flex flex-col w-full h-screen dark:bg-neutral-600 overflow-hidden">
+      <div className="flex flex-col w-full h-screen dark:bg-neutral-600 relative">
         {!isGenerating && !isInitialized && (
           <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
             <ControlsComponent
@@ -215,9 +214,9 @@ const CareerPossibilities = () => {
               maxZoom={1.5}
               defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
               attributionPosition="bottom-left"
-              className="absolute top-0 left-0 z-10 bg-gray-50 dark:bg-neutral-950 h-full overflow-hidden"
+              className="absolute top-0 left-0 z-0 bg-gray-50 dark:bg-neutral-950 h-full"
             >
-              <Controls />
+              {/* <Controls /> */}
               <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
             </ReactFlow>
           )}
@@ -225,6 +224,7 @@ const CareerPossibilities = () => {
         <div>
           <AnimatePresence>
             {selectedNode && (
+              console.log("Selected node for sidebar:", selectedNode),
                 <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
             )}
           </AnimatePresence>

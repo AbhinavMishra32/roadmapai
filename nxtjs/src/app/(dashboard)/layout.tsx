@@ -9,6 +9,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import UserProfileButton from "@/components/UserProfileButton";
+import ThemeSelectorButton from "@/components/ThemeSelectorButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +44,10 @@ export default async function RootLayout({
             <SidebarProvider>
               <div className='flex w-screen'>
                 {/* <SdSidebar /> */}
-                <UserProfileButton className="absolute top-0 right-0 z-[51]" />
+                <div className="absolute top-0 right-0 z-[51] m-3 flex items-center justify-center gap-3">
+                  <ThemeSelectorButton />
+                  <UserProfileButton />
+                </div>
                 <div className='flex flex-col w-full bg-gray-50 dark:bg-neutral-950'>
                   {children}
                 </div>

@@ -2,7 +2,6 @@ import { memo, useState } from "react"
 import { Handle, Position } from "reactflow"
 import { Briefcase, Book, Code, Server, Cloud, Users, School, Building2, LineChart, Plus } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
-import { set } from "react-hook-form"
 
 const icons = {
   briefcase: Briefcase,
@@ -111,7 +110,7 @@ function CustomNode({
               whileHover="hover"
               className="absolute -top-3 -right-3 text-sm bg-gray-200 dark:bg-indigo-900 border dark:border-indigo-300 hover:bg-indigo-300 dark:hover:bg-indigo-500 rounded-full"
             >
-              <button className="p-2 rounded-full w-full h-full" onClick={() => (data.isExpandedDetailed = true)}>
+              <button className="p-2 rounded-full w-full h-full" onClick={() => {}}>
                 <Plus />
               </button>
             </motion.div>
