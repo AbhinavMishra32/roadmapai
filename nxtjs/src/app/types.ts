@@ -24,6 +24,7 @@ export interface MindMapNode {
     detailedDescription: string
     timeEstimate: string
     nextSteps?: string[]
+    tasks?: string[]
   }
 }
 

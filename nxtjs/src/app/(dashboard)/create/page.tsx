@@ -27,6 +27,7 @@ import LoadingAnimationPage from "@/components/roadmap/LoadingAnimationPage"
 import { AnimatePresence } from "framer-motion"
 import { CareerDock } from "../../../components/roadmap/dock"
 import { useTheme } from "next-themes";
+import TaskDisplay from "@/components/roadmap/task-display";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -159,7 +160,8 @@ const CareerPossibilities = () => {
       setIsGenerating(true)
       setIsInitialized(true)
       try {
-        const { initialNodes, initialEdges } = await generateMindMapData(currentState, desiredOutcome)
+        const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, loadData: true})
+        console.log("Generated new mind map:", { initialNodes, initialEdges })
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
         setEdges(layoutedEdges)
@@ -176,12 +178,15 @@ const CareerPossibilities = () => {
 
   return (
     <>
+      {selectedNode && (
+        <TaskDisplay selectedNode={selectedNode} />
+      )}
       <div className="flex flex-col w-full h-screen dark:bg-neutral-600 overflow-hidden">
         {!isGenerating && !isInitialized && (
-          <div className={`p-4 bg-gray-50 dark:bg-red-950 ${!isInitialized && "h-full"} flex items-center`}>
+          <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
             <ControlsComponent
               onGenerateNewMindMap={generateNewMindMap}
-              isGenerating={isGenerating} bg-
+              isGenerating={isGenerating}
               isInitialized={isInitialized}
               selectedNode={selectedNode}
             />
@@ -210,7 +215,7 @@ const CareerPossibilities = () => {
               maxZoom={1.5}
               defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
               attributionPosition="bottom-left"
-              className="absolute top-0 left-0 z-50 bg-gray-50 dark:bg-neutral-950 h-full overflow-hidden"
+              className="absolute top-0 left-0 z-10 bg-gray-50 dark:bg-neutral-950 h-full overflow-hidden"
             >
               <Controls />
               <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
@@ -220,9 +225,7 @@ const CareerPossibilities = () => {
         <div>
           <AnimatePresence>
             {selectedNode && (
-              <div className="p-4 border border-gray-200 dark:border-neutral-800">
                 <Sidebar selectedNode={selectedNode} key={selectedNode.id} />
-              </div>
             )}
           </AnimatePresence>
         </div>

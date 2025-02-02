@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Sen, Space_Grotesk } from "next/font/google";
 import "../globals.css";
 import { cookies } from "next/headers";
 import { SidebarProvider } from "../../components/ui/sidebar";
@@ -15,10 +15,20 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+})
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const sen = Sen({
+    variable: "--font-sen",
+    subsets: ["latin"],
+})
 
 export default async function RootLayout({
   children
@@ -28,12 +38,12 @@ export default async function RootLayout({
   return (
     <ClerkProvider appearance={{ baseTheme: undefined }}>
       <html lang="en">
-        <body>
+        <body className={`${sen.variable} antialiased`}>
           <ThemeProvider>
             <SidebarProvider>
               <div className='flex w-screen'>
                 {/* <SdSidebar /> */}
-                <UserProfileButton className="absolute top-0 right-0 z-50" />
+                <UserProfileButton className="absolute top-0 right-0 z-[51]" />
                 <div className='flex flex-col w-full bg-gray-50 dark:bg-neutral-950'>
                   {children}
                 </div>

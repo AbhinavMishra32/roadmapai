@@ -1,8 +1,10 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory, SchemaType } from '@google/generative-ai'
 import { CareerInfo, QuestionData, Recommendations } from '../types'
-import { initialEdges, initialNodes } from '@/data/mindmap-data'
+import { initialEdges, initialNodes } from '@/data';
+import { roadmapData } from '@/data';
 import { useEffect } from 'react'
 import { api } from '@/services/axios'
+// import fsPromises from 'fs/promises';
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
 console.log("GEMINI API KEY: ", GEMINI_API_KEY);
@@ -12,8 +14,20 @@ if (!GEMINI_API_KEY) {
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
 
+interface GenerateRoadmapDataProps {
+  currentState: string;
+  desiredOutcome: string;
+  loadData?: boolean;
+}
 
-export async function generateMindMapData(currentState: string, desiredOutcome: string) {
+export async function generateMindMapData({currentState, desiredOutcome, loadData}: GenerateRoadmapDataProps) {
+  if (loadData) {
+    return {
+      initialNodes: roadmapData.initialNodes,
+      initialEdges: roadmapData.initialEdges,
+    }
+  }
+
   const schema = {
     type: SchemaType.OBJECT,
     properties: {
@@ -32,9 +46,10 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
                 description: { type: SchemaType.STRING },
                 detailedDescription: { type: SchemaType.STRING },
                 timeEstimate: { type: SchemaType.STRING },
-                nextSteps: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+                nextSteps: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING }},
+                tasks: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING }}
               },
-              required: ["label", "icon", "description", "detailedDescription", "timeEstimate", "nextSteps"]
+              required: ["label", "icon", "description", "detailedDescription", "timeEstimate", "nextSteps", "tasks"]
             }
           },
           required: ["id", "type", "data"]
@@ -92,10 +107,11 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
   4. Some paths that converge (e.g., different paths leading to a common advanced stage)
   5. A mix of linear progressions and branching options (have branching options at least 3 times)
   6. Keep the roadmap as detailed and up to date as possible, keep it detailed and more nodes and edges would be awesome, have alot of nodes, and have them connected in a way that makes sense.
-  7. The final node representing the desired outcome
-  8. Make the roadmap tell in detail about anything the user asks for.
-  9. Dont have the label and id CamelCase, use natural english words with spaces (label is the card / node label that tells details about the node as tags and what thing is happening in that node (something other than whats being told in the description))
-  10. In detailedDescription provide a detailed description of the node, what it is about, what it does, what it is used for, etc.
+  7. Also give 5-8 tasks for every node in order to achieve that path (node), the tasks should be realistic and should be able to be done by the user. the tasks should be exactly for that specific node only, e.g. if the node title is "Learn Python Basics" then the tasks should be 1. Watch a youtube video on python basics, 2. Create a simple python program yourself by the knowledge you gained from the video, 3. Study OOPS concepts in python, 4. Explore different libraries in python like pygame, etc. Start from the very basics and then move to the advanced level of that very node.
+  8. The final node representing the desired outcome
+  9. Make the roadmap tell in detail about anything the user asks for.
+  10. Dont have the label and id CamelCase, use natural english words with spaces (label is the card / node label that tells details about the node as tags and what thing is happening in that node (something other than whats being told in the description))
+  11. In detailedDescription provide a detailed description of the node, what it is about, what it does, what it is used for, etc.
 
   Requirements for nodes:
   - Unique string IDs (e.g., names of nodes in natural english)
@@ -119,6 +135,7 @@ export async function generateMindMapData(currentState: string, desiredOutcome: 
     const responseText = result.response.text();
     const generatedData = JSON.parse(responseText);
     console.log("Generated mind map data:", generatedData);
+
 
     return {
       initialNodes: generatedData.aiNodes,
