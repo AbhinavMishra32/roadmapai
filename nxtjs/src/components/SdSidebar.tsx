@@ -19,6 +19,7 @@ import ThemeSelectorButton from './ThemeSelectorButton';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import { useTheme } from 'next-themes';
+import UserProfileButton from './UserProfileButton';
 
 const sidebarRoutes = [
     {
@@ -77,21 +78,7 @@ export function SdSidebar() {
                     <ThemeSelectorButton />
                 </SidebarContent>
                 <SidebarFooter className='border-t-2 dark:bg-neutral-900'>
-                    <div className="flex gap-2 pl-1 pr-2 pt-2 mb-2 rounded-xl">
-                        <div className="pl-3 pr-1 flex items-center justify-center">
-                            <UserButton
-                                appearance={{
-                                    baseTheme: theme === "dark" ? dark : undefined,
-                                    elements: { userButtonAvatarBox: "w-8 h-8" },
-                                }}
-                                userProfileProps={{ appearance: { baseTheme: theme === "dark" ? dark : undefined } }}
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <p className="text-gray-500 dark:text-gray-400 text-xs">Free account</p>
-                            <p className="text-gray-700 dark:text-white text-sm">{user?.username || user?.fullName}</p>
-                        </div>
-                    </div>
+                    <UserProfileButton />
                 </SidebarFooter>
             </Sidebar>
         </>

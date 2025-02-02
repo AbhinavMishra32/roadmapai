@@ -8,6 +8,7 @@ import React from "react";
 import ThemeProvider from "@/components/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import UserProfileButton from "@/components/UserProfileButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,8 @@ export default async function RootLayout({
           <ThemeProvider>
             <SidebarProvider>
               <div className='flex w-screen'>
-                <SdSidebar />
+                {/* <SdSidebar /> */}
+                <UserProfileButton className="absolute top-0 right-0 z-50" />
                 <div className='flex flex-col w-full bg-gray-50 dark:bg-neutral-950'>
                   {children}
                 </div>

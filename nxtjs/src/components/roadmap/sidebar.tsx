@@ -36,22 +36,20 @@ interface SidebarProps {
 }
 
 const icons = {
-  briefcase: Briefcase,
-  book: Book,
-  code: Code,
-  server: Server,
-  cloud: Cloud,
-  users: Users,
-  school: School,
-  building: Building2,
-  chart: LineChart,
-  stethoscope: Stethoscope,
+  Briefcase: Briefcase,
+  Book: Book,
+  Server: Server,
+  Cloud: Cloud,
+  Users: Users,
+  School: School,
+  Building: Building2,
+  Chart: LineChart,
+  Stethoscope: Stethoscope,
   Code: Code,
   Gavel: Gavel,
   Mic: Mic,
   Paintbrush: Paintbrush,
   Calculator: Calculator,
-  Book: Book,
   Tool: Wrench,
   Camera: Camera,
   Cutlery: GlassWater,
@@ -67,8 +65,6 @@ const icons = {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
-  const [loading, setLoading] = useState(true)
-
   let IconComponent = Briefcase;
   try {
     IconComponent = selectedNode?.data.icon ? icons[selectedNode.data.icon as keyof typeof icons] : Briefcase;

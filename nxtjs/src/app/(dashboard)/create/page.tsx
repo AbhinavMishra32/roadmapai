@@ -176,16 +176,17 @@ const CareerPossibilities = () => {
 
   return (
     <>
-      {theme === "dark" && <p className="text-black">yooo its dark</p>}
-      <div className="flex flex-col w-full h-screen dark:bg-neutral-600">
-        <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
-          <ControlsComponent
-            onGenerateNewMindMap={generateNewMindMap}
-            isGenerating={isGenerating} bg-
-            isInitialized={isInitialized}
-            selectedNode={selectedNode}
-          />
-        </div>
+      <div className="flex flex-col w-full h-screen dark:bg-neutral-600 overflow-hidden">
+        {!isGenerating && !isInitialized && (
+          <div className={`p-4 bg-gray-50 dark:bg-red-950 ${!isInitialized && "h-full"} flex items-center`}>
+            <ControlsComponent
+              onGenerateNewMindMap={generateNewMindMap}
+              isGenerating={isGenerating} bg-
+              isInitialized={isInitialized}
+              selectedNode={selectedNode}
+            />
+          </div>
+        )}
         <div className="flex-grow relative">
           {isGenerating ? (
             <LoadingAnimationPage />
@@ -209,7 +210,7 @@ const CareerPossibilities = () => {
               maxZoom={1.5}
               defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
               attributionPosition="bottom-left"
-              className="bg-gray-50 dark:bg-neutral-950"
+              className="absolute top-0 left-0 z-50 bg-gray-50 dark:bg-neutral-950 h-full overflow-hidden"
             >
               <Controls />
               <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
