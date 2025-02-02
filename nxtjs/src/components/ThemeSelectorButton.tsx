@@ -26,7 +26,7 @@ export default function ThemeSelectorButton() {
         <Button
           variant="outline"
           size="icon"
-          className="h-12 w-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-100 to-pink-100 dark:from-blue-900 dark:to-purple-900 transition-all duration-300"
+          className="h-12 w-12 rounded-full overflow-hidden dark:bg-neutral-800/40 backdrop-blur-md transition-all duration-300"
         >
           <div className="relative w-full h-full">
             <motion.div
@@ -38,7 +38,7 @@ export default function ThemeSelectorButton() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <Sun className="h-6 w-6 text-yellow-500 filter drop-shadow" />
+              <Sun className="h-6 w-6 filter drop-shadow" />
             </motion.div>
             <motion.div
               className="absolute inset-0 flex items-center justify-center"
@@ -49,7 +49,7 @@ export default function ThemeSelectorButton() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <Moon className="h-6 w-6 text-blue-300 filter drop-shadow" />
+              <Moon className="h-6 w-6  filter drop-shadow" />
             </motion.div>
           </div>
           <span className="sr-only">Toggle theme</span>

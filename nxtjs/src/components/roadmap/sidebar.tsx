@@ -78,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
   try {
     return (
       <div
-        className={`fixed z-50 right-0 top-1/2 -translate-y-1/2 w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-[0_0px_60px_14px_rgba(0,0,0,0.6)] border-2 border-yellow-400 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4 transition-all duration-300 ease-in-out ${selectedNode ? "translate-x-0" : "translate-x-full"
+        className={`fixed z-50 right-0 top-1/2 -translate-y-1/2 w-72 rounded-3xl m-2 backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-[0_0px_60px_4px_rgba(0,0,0,0.15)] dark:shadow-[0_0px_60px_14px_rgba(0,0,0,0.6)] border-2 border-indigo-200 dark:border-indigo-400/30 overflow-y-auto max-h-[70vh] p-4 transition-all duration-300 ease-in-out ${selectedNode ? "translate-x-0" : "translate-x-full"
           }`}
         style={{
           scrollbarWidth: 'thin',
@@ -131,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
             )}
 
             <div className="text-sm bg-slate-50 dark:bg-neutral-800/40 p-3 rounded-lg border border-gray-500/40">
-          <span className="text-yellow-600 dark:text-indigo-300/80 font-medium">Est. Time: </span>
+          <span className="text-indigo-500 dark:text-indigo-300/80 font-medium">Est. Time: </span>
           <span className="text-gray-700 dark:text-gray-400">{selectedNode.data.timeEstimate}</span>
             </div>
 
@@ -144,7 +144,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedNode }) => {
                     key={index}
                     className="flex items-center text-sm text-gray-600 dark:text-gray-500"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 dark:bg-indigo-400 mr-2" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400 mr-2" />
                     {step}
                   </li>
                 ))}

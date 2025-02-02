@@ -83,7 +83,7 @@ function CustomNode({
           ease: "easeInOut",
         }}
         className={`group relative px-4 py-3 shadow-md dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border border-neutral-300 transition-all duration-300 hover:shadow-lg hover:scale-105 ${data.isHighlighted
-          ? "border-red-400 dark:border-2 dark:border-indigo-500 bg-red-50 dark:bg-indigo-700/10 backdrop-blur-sm"
+          ? "border-indigo-400 dark:border-2 dark:border-indigo-500 bg-indigo-50 dark:bg-indigo-700/10 backdrop-blur-sm"
           : "border-gray-200 dark:border-neutral-700 dark:border-2 bg-white dark:bg-neutral-900/10 backdrop-blur-sm"
           } ${data.isExpanded ? "scale-110 shadow-lg dark:shadow-2xl" : ""}`}
         style={{
