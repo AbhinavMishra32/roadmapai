@@ -64,7 +64,7 @@ export default function ThemeSelectorButton() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme("dark")}
-          className={`cursor-pointer rounded-lg ${theme === "dark" ? "bg-gray-100 dark:bg-neutral-800" : "hover:bg-gray-100 dark:hover:bg-neutral-800"}`}
+          className={`cursor-pointer rounded-lg my-1 ${theme === "dark" ? "bg-gray-100 dark:bg-neutral-800" : "hover:bg-gray-100 dark:hover:bg-neutral-800"}`}
         >
           Dark
         </DropdownMenuItem>

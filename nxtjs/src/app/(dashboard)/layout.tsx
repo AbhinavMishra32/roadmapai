@@ -42,9 +42,9 @@ export default async function RootLayout({
         <body className={`${sen.variable} antialiased`}>
           <ThemeProvider>
             <SidebarProvider>
-              <div className='flex w-screen'>
+              <div className='flex w-screen relative'>
                 {/* <SdSidebar /> */}
-                <div className="absolute top-0 right-0 z-[51] m-3 flex items-center justify-center gap-3">
+                <div className="absolute top-0 right-0 z-50 m-3 flex items-center justify-center gap-3">
                   <ThemeSelectorButton />
                   <UserProfileButton />
                 </div>

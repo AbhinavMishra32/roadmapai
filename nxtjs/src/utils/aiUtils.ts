@@ -17,11 +17,11 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
 interface GenerateRoadmapDataProps {
   currentState: string;
   desiredOutcome: string;
-  loadData?: boolean;
+  sampleData?: boolean;
 }
 
-export async function generateMindMapData({currentState, desiredOutcome, loadData}: GenerateRoadmapDataProps) {
-  if (loadData) {
+export async function generateMindMapData({currentState, desiredOutcome, sampleData }: GenerateRoadmapDataProps) {
+  if (sampleData) {
     return {
       initialNodes: roadmapData.initialNodes,
       initialEdges: roadmapData.initialEdges,

@@ -1,152 +1,78 @@
 "use client"
 
-import { cn } from "@/lib/utils"
-import { AnimatePresence, type MotionValue, motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useRef, useState } from "react"
-import { Brain, ListTodo, Compass, Bookmark, MessageSquareMore } from "lucide-react"
-import type { MindMapNode } from "../../types"
+import { motion } from "framer-motion"
+import { BookmarkIcon, CheckSquare, RefreshCw, Save, Share2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-interface CareerDockProps {
-  selectedNode: MindMapNode | null
+interface RoadmapControlsProps {
+  onShowTasks?: () => void
+  onBookmarkNode?: () => void
+  onBookmarkRoadmap?: () => void
+  onRegenerateRoadmap?: () => void
 }
 
-const items = [
-  {
-    title: "Chat with AI",
-    icon: <Brain className="text-indigo-300" />,
-    href: "#chat",
-  },
-  {
-    title: "Save Todo",
-    icon: <ListTodo className="text-indigo-300" />,
-    href: "#todo",
-  },
-  {
-    title: "Explore",
-    icon: <Compass className="text-indigo-300" />,
-    href: "#explore",
-  },
-  {
-    title: "Bookmarks",
-    icon: <Bookmark className="text-indigo-300" />,
-    href: "#bookmarks",
-  },
-  {
-    title: "Discuss",
-    icon: <MessageSquareMore className="text-indigo-300" />,
-    href: "#discuss",
-  },
-]
-
-export const CareerDock = ({ selectedNode }: CareerDockProps) => {
-  const mouseX = useMotionValue(Number.POSITIVE_INFINITY)
-
-  return (
-    <AnimatePresence>
-      {selectedNode && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
-          onMouseMove={(e) => mouseX.set(e.pageX)}
-          onMouseLeave={() => mouseX.set(Number.POSITIVE_INFINITY)}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 flex h-16 items-end rounded-2xl bg-neutral-950/50 backdrop-blur-md border border-indigo-500/20 px-4 pb-3 shadow-[0_0px_60px_-10px_rgba(139,92,246,0.3)] z-50"
-        >
-          {items.map((item) => (
-            <IconContainer mouseX={mouseX} key={item.title} {...item} selectedNode={selectedNode} />
-          ))}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
-function IconContainer({
-    mouseX,
-    title,
-    icon,
-    selectedNode,
-}: {
-    mouseX: MotionValue
-    title: string
-    icon: React.ReactNode
-    selectedNode: MindMapNode
-}) {
-    const ref = useRef<HTMLDivElement>(null)
-
-    const distance = useTransform(mouseX, (val) => {
-        const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
-        return val - bounds.x - bounds.width / 2
-    })
-
-  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40])
-  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40])
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20])
-  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20])
-
-  const width = useSpring(widthTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  })
-  const height = useSpring(heightTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  })
-
-  const widthIcon = useSpring(widthTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  })
-  const heightIcon = useSpring(heightTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  })
-
-  const [hovered, setHovered] = useState(false)
-
-  const handleClick = () => {
-    // Developer can access the selectedNode data here
-    console.log("Clicked action:", title, "for node:", selectedNode)
-    // Example of accessing node data
-    const nodeData = {
-      id: selectedNode.id,
-      label: selectedNode.data.label,
-      description: selectedNode.data.description,
-      timeEstimate: selectedNode.data.timeEstimate,
-      nextSteps: selectedNode.data.nextSteps,
-    }
-    console.log("Node data:", nodeData)
-  }
-
+export default function RoadmapControls({
+  onShowTasks,
+  onBookmarkNode,
+  onBookmarkRoadmap,
+  onRegenerateRoadmap,
+}: RoadmapControlsProps) {
   return (
     <motion.div
-      ref={ref}
-      style={{ width, height }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={handleClick}
-      className="mx-2 aspect-square rounded-2xl bg-neutral-900/50 border border-indigo-500/20 hover:border-indigo-500/40 flex items-center justify-center relative cursor-pointer"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="absolute top-4 left-4 ml-10 z-[51] flex items-center gap-2"
     >
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 2, x: "-50%" }}
-            className="px-3 py-1.5 rounded-lg bg-neutral-950/80 border border-indigo-500/20 text-indigo-200 absolute left-1/2 -translate-x-1/2 -top-10 whitespace-nowrap text-sm font-medium"
-          >
-            {title}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center">
-        {icon}
-      </motion.div>
+      <div className="flex p-1.5 items-center gap-1.5 rounded-full backdrop-blur-md bg-white/10 dark:bg-neutral-950/50 border border-white/20 dark:border-white/10 shadow-lg">
+        <Button
+          onClick={onShowTasks}
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-800/50 transition-colors"
+        >
+          <CheckSquare className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="sr-only">Show Tasks</span>
+        </Button>
+
+        <Button
+          onClick={onBookmarkNode}
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-800/50 transition-colors"
+        >
+          <BookmarkIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="sr-only">Bookmark Node</span>
+        </Button>
+
+        <Button
+          onClick={onBookmarkRoadmap}
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-800/50 transition-colors"
+        >
+          <Save className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="sr-only">Save Roadmap</span>
+        </Button>
+
+        <Button
+          onClick={onRegenerateRoadmap}
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-800/50 transition-colors"
+        >
+          <RefreshCw className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="sr-only">Regenerate Roadmap</span>
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-800/50 transition-colors"
+        >
+          <Share2 className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="sr-only">Share Roadmap</span>
+        </Button>
+      </div>
     </motion.div>
   )
 }

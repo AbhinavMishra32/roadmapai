@@ -25,7 +25,7 @@ import { generateMindMapData } from "@/utils/aiUtils"
 import { type MindMapNode, MindMapEdge } from "../../types"
 import LoadingAnimationPage from "@/components/roadmap/LoadingAnimationPage"
 import { AnimatePresence } from "framer-motion"
-import { CareerDock } from "../../../components/roadmap/dock"
+import RoadmapControls from "../../../components/roadmap/dock"
 import { useTheme } from "next-themes";
 import TaskDisplay from "@/components/roadmap/task-display";
 
@@ -160,7 +160,7 @@ const CareerPossibilities = () => {
       setIsGenerating(true)
       setIsInitialized(true)
       try {
-        const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, loadData: true})
+        const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, sampleData: true})
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
         setEdges(layoutedEdges)
@@ -214,7 +214,7 @@ const CareerPossibilities = () => {
               maxZoom={1.5}
               defaultViewport={{ x: 0, y: 0, zoom: 1.2 }}
               attributionPosition="bottom-left"
-              className="absolute top-0 left-0 z-0 bg-gray-50 dark:bg-neutral-950 h-full"
+              className="bg-gray-50 dark:bg-neutral-950 h-full"
             >
               {/* <Controls /> */}
               <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
@@ -229,7 +229,7 @@ const CareerPossibilities = () => {
             )}
           </AnimatePresence>
         </div>
-        <CareerDock selectedNode={selectedNode} />
+        {/* <RoadmapControls /> */}
       </div>
     </>
   )
