@@ -28,6 +28,8 @@ import { AnimatePresence } from "framer-motion"
 import RoadmapControls from "../../../components/roadmap/dock"
 import { useTheme } from "next-themes";
 import TaskDisplay from "@/components/roadmap/task-display";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -118,7 +120,7 @@ const CareerPossibilities = () => {
           type: "smoothstep",
           style: {
             ...ed.style,
-            stroke: highlightedEdges.has(ed.id) ? "rgb(205, 209, 255)" : "rgba(155, 156, 247, 0.9)",
+            stroke: highlightedEdges.has(ed.id) ? `${theme === "dark" ? "rgb(205, 209, 255)" : "rgba(88, 74, 212)"}` : `${theme === "dark" ? "rgba(155, 156, 247, 0.9)" : "rgba(145, 140, 241, 0.6)"}`,
             strokeWidth: highlightedEdges.has(ed.id) ? 3 : 2,
           },
           animated: highlightedEdges.has(ed.id),
@@ -180,7 +182,7 @@ const CareerPossibilities = () => {
       {selectedNode && (
         <TaskDisplay selectedNode={selectedNode} />
       )}
-      <div className="flex flex-col w-full h-screen dark:bg-neutral-600 relative">
+      <div className="flex flex-col w-full h-screen relative">
         {!isGenerating && !isInitialized && (
           <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
             <ControlsComponent
@@ -217,7 +219,7 @@ const CareerPossibilities = () => {
               className="bg-gray-50 dark:bg-neutral-950 h-full"
             >
               {/* <Controls /> */}
-              <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#94a3b8" style={{ opacity: 0.3 }} />
+              <Background variant={BackgroundVariant.Dots} gap={16} size={1} color={`${theme === "dark" ? "#94a3b8" : "#a295be"}`} style={{ opacity: theme === "dark" ? 0.3 : 1 }} />
             </ReactFlow>
           )}
         </div>

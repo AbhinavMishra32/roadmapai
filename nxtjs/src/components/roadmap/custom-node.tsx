@@ -82,9 +82,9 @@ function CustomNode({
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className={`group relative px-4 py-3 shadow-md dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border border-neutral-300 transition-all duration-300 hover:shadow-lg hover:scale-105 ${data.isHighlighted
-          ? "border-indigo-400 dark:border-2 dark:border-indigo-500 bg-indigo-50 dark:bg-indigo-700/10 backdrop-blur-sm"
-          : "border-gray-200 dark:border-neutral-700 dark:border-2 bg-white dark:bg-neutral-900/10 backdrop-blur-sm"
+        className={`group relative px-4 py-3 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.4)] hover:shadow-[0_10px_35px_-13px_rgba(0,0,0,0.5)] dark:shadow-[0_5px_60px_-15px_rgba(154,157,241,0.2)] rounded-lg border-2 border-indigo-300/80 transition-all duration-300 hover:scale-105 ${data.isHighlighted
+          ? "border-indigo-500 dark:border-2 dark:border-indigo-500 bg-indigo-200/10 dark:bg-indigo-700/10 backdrop-blur-sm"
+          : "border-gray-200 dark:border-neutral-700 dark:border-2 bg-white dark:bg-neutral-900/20 backdrop-blur-sm"
           } ${data.isExpanded ? "scale-110 shadow-lg dark:shadow-2xl" : ""}`}
         style={{
           width: data.isExpanded ? "240px" : "220px",
@@ -97,7 +97,7 @@ function CustomNode({
           type="target"
           position={Position.Left}
           isConnectable={isConnectable}
-          className={`!w-3 !h-3 !-left-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
+          className={`!w-3 !h-3 !-left-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-indigo-500 dark:!bg-indigo-600" : "!bg-indigo-400 dark:!bg-indigo-500"
             }`}
         />
         <AnimatePresence>
@@ -108,7 +108,7 @@ function CustomNode({
               animate="animate"
               exit="exit"
               whileHover="hover"
-              className="absolute -top-3 -right-3 text-sm bg-gray-200 dark:bg-indigo-900 border dark:border-indigo-300 hover:bg-indigo-300 dark:hover:bg-indigo-500 rounded-full"
+              className="absolute -top-3 -right-3 text-sm bg-indigo-100 dark:bg-indigo-900 border-2 dark:border border-indigo-500 dark:border-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-500 rounded-full"
             >
               <button className="p-2 rounded-full w-full h-full" onClick={() => {}}>
                 <Plus />
@@ -120,14 +120,14 @@ function CustomNode({
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <div
-              className={`p-1.5 rounded-lg ${data.isHighlighted ? "bg-red-100 dark:bg-indigo-200" : "bg-gray-100 dark:bg-indigo-100"}`}
+              className={`p-1.5 rounded-lg ${data.isHighlighted ? "bg-indigo-200 dark:bg-indigo-300" : "bg-indigo-100 dark:bg-indigo-100"}`}
             >
               <IconComponent
-                className={`w-4 h-4 ${data.isHighlighted ? "text-red-600 dark:text-black" : "text-gray-600 dark:text-black"}`}
+                className={`w-4 h-4 ${data.isHighlighted ? "text-indigo-600 dark:text-black" : "text-gray-600 dark:text-black"}`}
               />
             </div>
             <h2
-              className={`text-sm font-semibold ${data.isHighlighted ? "text-red-800 dark:text-white" : "text-gray-800 dark:text-white"}`}
+              className={`text-sm font-semibold ${data.isHighlighted ? "text-indigo-800 dark:text-white" : "text-gray-800 dark:text-white"}`}
             >
               {data.label}
             </h2>
@@ -145,9 +145,9 @@ function CustomNode({
               {data.nextSteps.map((step, index) => (
                 <span
                   key={index}
-                  className={`px-2 py-0.5 rounded-full text-xs font-medium dark:border-indigo-900 dark:border-[1px] backdrop-blur-3xl ${data.isHighlighted
-                    ? "bg-red-100 dark:bg-indigo-900/50 text-red-800 dark:text-gray-200"
-                    : "bg-yellow-100 dark:bg-indigo-900/30 text-yellow-800 dark:text-gray-300"
+                  className={`px-2 py-0.5 rounded-full text-xs font-medium border-[1px] border-indigo-200 dark:border-indigo-900 dark:border-[1px] backdrop-blur-3xl ${data.isHighlighted
+                    ? "bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-gray-200"
+                    : "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-gray-300"
                     }`}
                 >
                   {step}
@@ -161,7 +161,7 @@ function CustomNode({
           type="source"
           position={Position.Right}
           isConnectable={isConnectable}
-          className={`!w-3 !h-3 !-right-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-red-400 dark:!bg-indigo-600" : "!bg-yellow-400 dark:!bg-indigo-500"
+          className={`!w-3 !h-3 !-right-1.5 !border-2 !border-white ${data.isHighlighted ? "!bg-indigo-500 dark:!bg-indigo-600" : "!bg-indigo-400 dark:!bg-indigo-500"
             }`}
         />
       </motion.div>

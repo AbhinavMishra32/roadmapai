@@ -28,34 +28,34 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
   if (!isInitialized) {
     return (
       <>
-        <Card className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg border-2 border-amber-200 dark:border-indigo-400/50">
-          <CardHeader className="bg-gray-100 dark:bg-neutral-800 p-6">
+        <Card className="w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-none border-none bg-gray-50 dark:bg-neutral-950">
+          <CardHeader className="p-6 text-center">
             <CardTitle className="text-2xl font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2">
-              <BrainCircuit className="h-8 w-8" />
               Create Your AI Roadmap
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 bg-white dark:bg-neutral-900">
-            <p className="text-slate-600 dark:text-gray-300 mb-4">
+          {/* <div className='w-[80vh] mx-auto'> */}
+          <CardContent className="p-6 bg-gray-50 dark:bg-neutral-950">
+            {/* <p className="text-slate-600 dark:text-gray-300 mb-4">
               Our AI-powered mind map creator helps you explore connections, discover new paths, and illuminate your thinking process.
-            </p>
+            </p> */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
-                <Compass className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
+                <Compass className="absolute left-3 top-2.5 h-5 w-5 text-indigo-400" />
                 <Input
                   placeholder="Where are you now? (e.g., 'Starting a new project')"
                   value={situation}
                   onChange={(e) => setSituation(e.target.value)}
-                  className="pl-10 py-3 rounded-2xl"
+                  className="pl-10 py-3 rounded-lg"
                 />
               </div>
               <div className="relative">
-                <Target className="absolute left-3 top-2.5 h-5 w-5 text-amber-500 dark:text-indigo-400" />
+                <Target className="absolute left-3 top-2.5 h-5 w-5 text-indigo-400" />
                 <Input
                   placeholder="Where do you want to go? (e.g., 'Launch successfully')"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
-                  className="pl-10 py-3 rounded-2xl"
+                  className="pl-10 py-3 rounded-lg"
                 />
               </div>
               <Button
@@ -77,6 +77,8 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
               </Button>
             </form>
           </CardContent>
+          {/* </div> */}
+
         </Card>
         {/* <Background
           variant={BackgroundVariant.Dots}

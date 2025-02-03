@@ -42,7 +42,7 @@ export default function TaskDisplay({ selectedNode }: TaskDisplayProps) {
   if (!selectedNode?.data.tasks?.length) return null
 
   return (
-    <Card className="absolute z-50 bottom-6 left-6 m-3 w-auto max-w-md rounded-3xl backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border border-yellow-400/50 dark:border-indigo-400/30 overflow-hidden">
+    <Card className="absolute z-50 bottom-6 left-6 m-3 w-auto max-w-md rounded-3xl backdrop-blur-lg dark:backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border-2 border-indigo-200 dark:border-indigo-400/30 overflow-hidden">
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function TaskDisplay({ selectedNode }: TaskDisplayProps) {
                 custom={index}
                 layout
               >
-                <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-yellow-400 dark:bg-indigo-400 text-white/90 text-[11px] font-medium">
+                <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-indigo-300 dark:bg-indigo-400 text-white text-[11px] font-medium">
                   {index + 1}
                 </span>
                 <span className="text-gray-700 dark:text-gray-300">{task}</span>
