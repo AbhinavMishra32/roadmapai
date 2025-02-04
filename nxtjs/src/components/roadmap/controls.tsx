@@ -46,7 +46,7 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where are you now? (e.g., 'Starting a new project')"
                   value={situation}
                   onChange={(e) => setSituation(e.target.value)}
-                  className="pl-10 py-3 rounded-lg"
+                  className="pl-10 py-3 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
                 />
               </div>
               <div className="relative">
@@ -55,7 +55,13 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where do you want to go? (e.g., 'Launch successfully')"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
-                  className="pl-10 py-3 rounded-lg"
+                  className="pl-10 py-3 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
+                />
+              </div>
+              <div className='relative'>
+                <textarea
+                  placeholder='Custom Prompt'
+                  className='w-full h-20 p-2 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800'
                 />
               </div>
               <Button
