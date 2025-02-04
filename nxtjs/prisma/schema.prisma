@@ -26,27 +26,28 @@ model Roadmap {
   userId String
   user User @relation(fields: [userId], references: [id])
   nodes Node[]
+  edges Edge[]
 }
 
 model Node {
-  id String @id @default(cuid())
-  NodeId String
+  id        String   @id @default(cuid())
   roadmapId String
-  roadmap Roadmap @relation(fields: [roadmapId], references: [id])
-  data NodeData
+  roadmap   Roadmap  @relation(fields: [roadmapId], references: [id])
+  nodeData  NodeData?
+  type      String
 }
 
 model NodeData {
-  id String @id @default(cuid())
-  description String
+  id                 String   @id @default(cuid())
+  description        String
   detailedDescription String
-  icon String
-  label String
-  nextSteps String[]
-  tasks Task[]
-  timeEstimate String
-  nodeId String
-  node Node @relation(fields: [nodeId], references: [id])
+  icon               String
+  label              String
+  nextSteps          String[]
+  tasks              Task[]
+  timeEstimate       String
+  nodeId             String   @unique
+  node               Node     @relation(fields: [nodeId], references: [id])
 }
 
 model Task {
@@ -55,4 +56,23 @@ model Task {
   completed Boolean
   nodeId String
   node NodeData @relation(fields: [nodeId], references: [id])
+}
+
+model Edge {
+  id String @id @default(cuid())
+  edgeId String
+  source String
+  target String
+  type String
+  style Style?
+  roadmapId String
+  roadmap Roadmap @relation(fields: [roadmapId], references: [id])
+}
+
+model Style {
+  id String @id @default(cuid())
+  stroke String
+  strokeWidth Int
+  edgeId String @unique
+  edge Edge @relation(fields:[edgeId], references: [id])
 }
