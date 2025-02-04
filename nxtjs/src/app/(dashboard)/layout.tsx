@@ -27,8 +27,8 @@ const geistMono = Geist_Mono({
 });
 
 export const sen = Sen({
-    variable: "--font-sen",
-    subsets: ["latin"],
+  variable: "--font-sen",
+  subsets: ["latin"],
 })
 
 export default async function RootLayout({
