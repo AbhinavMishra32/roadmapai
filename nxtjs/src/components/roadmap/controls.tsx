@@ -6,19 +6,20 @@ import { Loader2, Target, Compass, ArrowRight, Sparkles, BrainCircuit } from 'lu
 import { Background, BackgroundVariant } from 'reactflow'
 
 interface ControlsProps {
-  onGenerateNewMindMap: (situation: string, goal: string) => void
+  onGenerateNewMindMap: (situation: string, goal: string, customPrompt?: string | null) => void
   isGenerating: boolean
   isInitialized: boolean
   selectedNode: any
 }
 
 const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating, isInitialized, selectedNode }) => {
-  const [situation, setSituation] = useState('')
-  const [goal, setGoal] = useState('')
+  const [situation, setSituation] = useState('');
+  const [goal, setGoal] = useState('');
+  const [customPrompt, setCustomPrompt] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onGenerateNewMindMap(situation, goal)
+    onGenerateNewMindMap(situation, goal, customPrompt)
   }
 
   if (isInitialized && isGenerating) {
@@ -30,15 +31,15 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
       <>
         <Card className="w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-none border-none bg-gray-50 dark:bg-neutral-950">
           <CardHeader className="p-6 text-center">
-            <CardTitle className="text-2xl font-bold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+            <CardTitle className="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
               Create Your AI Roadmap
             </CardTitle>
           </CardHeader>
           {/* <div className='w-[80vh] mx-auto'> */}
           <CardContent className="p-6 bg-gray-50 dark:bg-neutral-950">
-            {/* <p className="text-slate-600 dark:text-gray-300 mb-4">
+            <p className="text-slate-600 dark:text-gray-300 mb-4">
               Our AI-powered mind map creator helps you explore connections, discover new paths, and illuminate your thinking process.
-            </p> */}
+            </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <Compass className="absolute left-3 top-2.5 h-5 w-5 text-indigo-400" />
@@ -46,7 +47,7 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where are you now? (e.g., 'Starting a new project')"
                   value={situation}
                   onChange={(e) => setSituation(e.target.value)}
-                  className="pl-10 py-3 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
+                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
                 />
               </div>
               <div className="relative">
@@ -55,19 +56,21 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where do you want to go? (e.g., 'Launch successfully')"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
-                  className="pl-10 py-3 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
+                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
                 />
               </div>
               <div className='relative'>
                 <textarea
                   placeholder='Custom Prompt'
-                  className='w-full h-20 p-2 rounded-lg text-sm text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800'
+                  onChange={(e) => setCustomPrompt(e.target.value)}
+                  className='w-full h-20 p-2 rounded-lg text-sm bg-gray-50 dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 focus:ring-red-400 dark:border-neutral-800'
                 />
               </div>
               <Button
                 type="submit"
                 className="w-full py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-500 text-white font-semibold text-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105"
                 disabled={isGenerating}
+                onMouseEnter={() => set}
               >
                 {isGenerating ? (
                   <>

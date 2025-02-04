@@ -158,11 +158,11 @@ const CareerPossibilities = () => {
   }, [resetSelection])
 
   const generateNewMindMap = useCallback(
-    async (currentState: string, desiredOutcome: string) => {
+    async (currentState: string, desiredOutcome: string, customPrompt?: string | null) => {
       setIsGenerating(true)
       setIsInitialized(true)
       try {
-        const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, sampleData: true})
+        const { initialNodes, initialEdges } = await generateMindMapData({currentState, desiredOutcome, sampleData: false, customPrompt, theme})
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
         setEdges(layoutedEdges)

@@ -4,6 +4,7 @@ import { initialEdges, initialNodes } from '@/data';
 import { roadmapData } from '@/data';
 import { useEffect } from 'react'
 import { api } from '@/services/axios'
+import { useTheme } from 'next-themes';
 // import fsPromises from 'fs/promises';
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
@@ -18,9 +19,12 @@ interface GenerateRoadmapDataProps {
   currentState: string;
   desiredOutcome: string;
   sampleData?: boolean;
+  customPrompt?: string | null;
+  theme: string
 }
 
-export async function generateMindMapData({currentState, desiredOutcome, sampleData }: GenerateRoadmapDataProps) {
+export async function generateMindMapData({currentState, desiredOutcome, sampleData, customPrompt, theme }: GenerateRoadmapDataProps) {
+
   if (sampleData) {
     return {
       initialNodes: roadmapData.initialNodes,
@@ -112,6 +116,7 @@ export async function generateMindMapData({currentState, desiredOutcome, sampleD
   9. Make the roadmap tell in detail about anything the user asks for.
   10. Dont have the label and id CamelCase, use natural english words with spaces (label is the card / node label that tells details about the node as tags and what thing is happening in that node (something other than whats being told in the description))
   11. In detailedDescription provide a detailed description of the node, what it is about, what it does, what it is used for, etc.
+  12. The roadmap should be really detailed.
 
   Requirements for nodes:
   - Unique string IDs (e.g., names of nodes in natural english)
@@ -126,9 +131,17 @@ export async function generateMindMapData({currentState, desiredOutcome, sampleD
   - Unique string IDs (e.g. names of nodes in natural english)
   - type: 'smoothstep'
   - animated: false
-  - style with stroke: '#EAB308' and strokeWidth: 2
+  - style with stroke: ${theme === "dark" ? "rgb(205, 209, 255)" : "rgba(155, 156, 247, 0.9)"} and strokeWidth: 2
 
-  Ensure the mind map represents a realistic, diverse, and achievable career progression tailored to the provided inputs.`;
+  Ensure the mind map represents a realistic, diverse, and achievable  progression tailored to the provided inputs.
+  ${customPrompt && ("This is a custom prompt that the user has given for this particular roadmap: "+ customPrompt)}`;
+
+  console.log("Prompt for generating mind map data:", prompt);
+
+  // return {
+  //   initialNodes: roadmapData.initialNodes,
+  //   initialEdges: roadmapData.initialEdges,
+  // }
 
   try {
     const result = await model.generateContent(prompt);
