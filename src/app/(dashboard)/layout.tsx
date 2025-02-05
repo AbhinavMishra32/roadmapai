@@ -39,7 +39,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider appearance={{ baseTheme: undefined }}>
       <html lang="en">
-        <body className={`${sen.variable} antialiased transition-all duration-1000`}>
+        <body className={`${sen.variable} antialiased`}>
           <ThemeProvider>
             <SidebarProvider>
               <div className='flex w-screen relative'>

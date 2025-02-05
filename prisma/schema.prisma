@@ -19,16 +19,21 @@ model User {
   attributes Json
   username   String
   email      String
-  roadmaps   Roadmap[]
+  recentRoadmaps Roadmap[] @relation("RecentRoadmaps")
+  savedRoadmaps   Roadmap[] @relation("SavedRoadmaps")
 }
 
 model Roadmap {
   id     String @id @default(cuid())
   title  String
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
   nodes  Node[]
   edges  Edge[]
+
+  recentUserId String?
+  recentUser   User?   @relation("RecentRoadmaps", fields: [recentUserId], references: [id])
+
+  savedUserId String?
+  savedUser   User?   @relation("SavedRoadmaps", fields: [savedUserId], references: [id])
 }
 
 model Node {

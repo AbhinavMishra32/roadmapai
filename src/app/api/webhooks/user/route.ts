@@ -1,3 +1,4 @@
+import { prisma } from '@/lib/db';
 import { headers } from 'next/headers';
 import { NextRequest } from 'next/server';
 import { Webhook } from 'svix';
@@ -43,6 +44,17 @@ export async function POST(request: NextRequest) {
         const { id, ...attributes } = evt.data;
         console.log(id);
         console.log("User attributes", attributes);
+
+        await prisma.user.upsert({
+            where: { extId: id as string },
+            create: {
+            extId: id as string,
+            username: attributes.username ? String(attributes.username) : (String(attributes.first_name) + " " + String(attributes.last_name)),
+            email: (attributes.email_addresses as any)[0].email_address as string,
+            attributes: attributes,
+            },
+            update: { attributes },
+        })
     }
     // console.log(payload);
     return new Response(JSON.stringify({ message: 'Received' }), {
