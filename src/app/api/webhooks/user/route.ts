@@ -1,5 +1,5 @@
-import { WebhookEvent } from '@clerk/nextjs/server';
 import { headers } from 'next/headers';
+import { NextRequest } from 'next/server';
 import { Webhook } from 'svix';
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET || '';
@@ -18,21 +18,34 @@ async function validateRequest(request: Request) {
     };
     const wh = new Webhook(webhookSecret);
     try {
-        return wh.verify(payloadString, svixHeaders) as WebhookEvent;
+        return wh.verify(payloadString, svixHeaders) as Event;
     } catch (error) {
         console.error("Error verifying webhook", error);
         return Response.error();
     }
+
 }
 
-export async function POST(request: Request) {
+type EventType = "user.created" | "user.updated" | "*";
+
+type Event = {
+    data: Record<string, string | number>;
+    object: "event",
+    type: EventType,
+}
+
+export async function POST(request: NextRequest) {
+    let evt: Event | null = null;
+    evt = await validateRequest(request) as Event;
+    const eventType: EventType = evt?.type;
+
+    if (eventType === "user.created" || eventType === "user.updated") {
+        const { id, ...attributes } = evt.data;
+        console.log(id);
+        console.log("User attributes", attributes);
+    }
+    // console.log(payload);
     return new Response(JSON.stringify({ message: 'Received' }), {
         headers: { 'Content-Type': 'application/json' },
     });
-    // console.log("Received webhook");
-    // const payload = await validateRequest(request);
-    // console.log(payload);
-    // return new Response(JSON.stringify({ message: 'Received' }), {
-    //     headers: { 'Content-Type': 'application/json' },
-    // });
 }
