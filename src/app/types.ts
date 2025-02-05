@@ -1,19 +1,3 @@
-export interface CareerInfo {
-  name: string
-  description: string
-}
-
-export interface QuestionOption {
-  text: string
-  correct: boolean
-  imagePrompt: string
-}
-
-export interface QuestionData {
-  question: string
-  options: QuestionOption[]
-}
-
 export interface MindMapNode {
   id: string
   type: string
@@ -38,35 +22,3 @@ export interface MindMapEdge {
     stroke?: string
   }
 }
-
-
-
-export interface Scholarship {
-  name: string
-  amount: number
-}
-
-export interface Alternative {
-  name: string
-  provider: string
-  cost: number
-  duration: string
-}
-
-export interface Course {
-  name: string
-  description: string
-  provider: string
-  cost: number
-  duration: string
-  careerOutcome: string
-  financialFit: string
-  scholarships: Scholarship[]
-  alternatives: Alternative[]
-}
-
-export interface Recommendations {
-  courses: Course[]
-  analysis: string
-}
-
