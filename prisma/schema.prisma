@@ -66,8 +66,8 @@ model Task {
 }
 
 model Edge {
-  id        String  @id @default(cuid())
-  edgeId    String
+  id        String
+  edgeId    String @id @default(cuid())
   source    String
   target    String
   type      String
@@ -81,5 +81,5 @@ model Style {
   stroke      String
   strokeWidth Int
   edgeId      String @unique
-  edge        Edge   @relation(fields: [edgeId], references: [id])
+  edge        Edge   @relation(fields: [edgeId], references: [edgeId])
 }

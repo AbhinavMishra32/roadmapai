@@ -30,6 +30,7 @@ import { useTheme } from "next-themes";
 import TaskDisplay from "@/components/roadmap/task-display";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { saveRoadmap } from "@/actions/saveRoadmap";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -163,6 +164,7 @@ const CareerPossibilities = () => {
       setIsInitialized(true)
       try {
         const { initialNodes, initialEdges } = await generateMindMapData({ currentState, desiredOutcome, sampleData: true, customPrompt, theme })
+        saveRoadmap({ nodes: initialNodes, edges: initialEdges, title: "First roadmap" });
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
         setEdges(layoutedEdges)
@@ -218,7 +220,8 @@ const CareerPossibilities = () => {
               attributionPosition="bottom-left"
               className="bg-gray-50 dark:bg-neutral-950 h-full"
             >
-              {/* <Controls /> */}
+              <Controls />
+            {/* <div className="fixed z-50 top-0 left-0 w-10 h-10 bg-red-400"></div> */}
               <Background variant={BackgroundVariant.Dots} gap={16} size={1} color={`${theme === "dark" ? "#94a3b8" : "#a295be"}`} style={{ opacity: theme === "dark" ? 0.3 : 1 }} />
             </ReactFlow>
           )}
