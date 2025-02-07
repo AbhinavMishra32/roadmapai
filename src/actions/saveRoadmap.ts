@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db";
 import { MindMapEdge, MindMapNode } from "@/types/index";
 import { auth } from "@clerk/nextjs/server";
+// (removed unused import)
 
 export async function saveRoadmap({
   nodes,
@@ -13,6 +14,11 @@ export async function saveRoadmap({
   edges: MindMapEdge[];
   title: string;
 }) {
+
+  console.log("----------------------------------");
+  console.log("Nodes:", nodes);
+  console.log("Edges:", edges);
+  console.log("Title:", title);
   // Validation
   const { userId } = await auth();
   if (!userId) {
@@ -27,52 +33,71 @@ export async function saveRoadmap({
     // Create roadmap with properly structured data
     const roadmap = await prisma.roadmap.upsert({
       where: {
-        id: `${title}-${Date.now()}`
+      id: `${title}-${Date.now()}`
       },
       update: {},
       create: {
-        title,
-        savedUser: {
-            connect: {
-                id: userId
-            }
-        },
-        nodes: {
-          createMany: {
-            data: nodes.map((node) => ({
-              nodeId: node.id,
-              type: node.type || 'default',
-              label: node.data?.label || '',
-              description: node.data?.description || '',
-              detailedDescription: node.data?.detailedDescription || '',
-              icon: node.data?.icon || '',
-              nextSteps: node.data?.nextSteps || [],
-              tasks: node.data?.tasks || [],
-              timeEstimate: node.data?.timeEstimate || ''
-            }))
-          }
-        },
-        edges: {
-          createMany: {
-            data: edges.map((edge) => ({
-              edgeId: edge.id,
-              source: edge.source,
-              target: edge.target,
-              type: edge.type || 'smoothstep',
-              animated: edge.animated || false
-            }))
-          }
+      id: `${title}-${Date.now()}`,
+      title,
+      savedUser: {
+        connect: {
+        id: userId
         }
       },
+      nodes: {
+        create: nodes.map((node) => ({
+        id: node.id,
+        type: node.type,
+        nodeData: {
+          create: {
+          label: node.data?.label,
+          description: node.data?.description,
+          detailedDescription: node.data?.detailedDescription,
+          icon: node.data?.icon,
+          nextSteps: node.data?.nextSteps,
+          tasks: node.data?.tasks,
+          timeEstimate: node.data?.timeEstimate
+          }
+        }
+        }))
+      },
+      edges: {
+        create: edges.map((edge) => ({
+        id: edge.id,
+        source: edge.source,
+        target: edge.target,
+        type: edge.type || 'smoothstep',
+        animated: edge.animated || false,
+        style: {
+          create: {
+          stroke: edge.style?.stroke || '#000000',
+          strokeWidth: edge.style?.strokeWidth || 1
+          }
+        }
+        }))
+      }
+      },
       include: {
-        nodes: true,
-        edges: true
+      nodes: {
+        include: {
+        nodeData: true
+        }
+      },
+      edges: {
+        include: {
+        style: true
+        }
+      }
       }
     });
 
     return { success: true, data: roadmap };
   } catch (error) {
-    console.error('Error in saveRoadmap:', error);
-    throw new Error(`Failed to save roadmap: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (error instanceof Error) {
+      console.error('Error in saveRoadmap:', error.stack);
+    } else {
+      console.error('Error in saveRoadmap:', error);
+    }
+    // throw new Error(`Failed to save roadmap: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

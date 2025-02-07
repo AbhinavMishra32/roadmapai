@@ -20,7 +20,7 @@ export interface MindMapEdge {
     target: string;
     type: string;
     animated: boolean;
-    style?: {
+    style: {
         stroke: string;
         strokeWidth: number;
     };
