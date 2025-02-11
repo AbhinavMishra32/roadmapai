@@ -14,20 +14,20 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(cuid())
-  extId      String    @unique
-  attributes Json
-  username   String
-  email      String
+  id             String    @id @default(cuid())
+  extId          String    @unique
+  attributes     Json
+  username       String
+  email          String
   recentRoadmaps Roadmap[] @relation("RecentRoadmaps")
-  savedRoadmaps   Roadmap[] @relation("SavedRoadmaps")
+  savedRoadmaps  Roadmap[] @relation("SavedRoadmaps")
 }
 
 model Roadmap {
-  id     String @id @default(cuid())
-  title  String
-  nodes  Node[]
-  edges  Edge[]
+  id    String @id @default(cuid())
+  title String
+  nodes Node[]
+  edges Edge[]
 
   recentUserId String?
   recentUser   User?   @relation("RecentRoadmaps", fields: [recentUserId], references: [id])
@@ -67,7 +67,7 @@ model Task {
 
 model Edge {
   id        String
-  edgeId    String @id @default(cuid())
+  edgeId    String  @id @default(cuid())
   source    String
   target    String
   type      String
