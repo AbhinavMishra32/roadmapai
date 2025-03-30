@@ -7,8 +7,9 @@ import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 
-export default function ThemeSelectorButton() {
+export default function ThemeSelectorButton({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
@@ -26,7 +27,7 @@ export default function ThemeSelectorButton() {
         <Button
           variant="outline"
           size="icon"
-          className="h-12 w-12 border-2 rounded-full overflow-hidden dark:bg-neutral-800/40 backdrop-blur-md transition-all duration-300"
+          className={cn("h-12 w-12 border-2 rounded-full overflow-hidden dark:bg-neutral-800/40 backdrop-blur-md transition-all duration-300", className)}
         >
           <div className="relative w-full h-full">
             <motion.div
