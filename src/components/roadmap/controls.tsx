@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2, Target, Compass, ArrowRight, Sparkles, BrainCircuit } from 'lucide-react'
 import { Background, BackgroundVariant } from 'reactflow'
+import {hubotSans} from '../../app/page';
 
 interface ControlsProps {
   onGenerateNewMindMap: (situation: string, goal: string, customPrompt?: string | null) => void
@@ -30,7 +31,7 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
   if (!isInitialized) {
     return (
       <>
-        <Card className="w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-none border-none bg-gray-50 dark:bg-neutral-950">
+        <Card className={`${hubotSans.className} w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-none border-none bg-gray-50 dark:bg-neutral-950`}>
           <CardHeader className="p-6 text-center">
             <CardTitle className="text-2xl font-light text-gray-700 dark:text-gray-200 flex items-center gap-2">
               Create Your AI Roadmap
@@ -48,7 +49,7 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where are you now? (e.g., 'Starting a new project')"
                   value={situation}
                   onChange={(e) => setSituation(e.target.value)}
-                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
+                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
                 />
               </div>
               <div className="relative">
@@ -57,14 +58,14 @@ const Controls: React.FC<ControlsProps> = ({ onGenerateNewMindMap, isGenerating,
                   placeholder="Where do you want to go? (e.g., 'Launch successfully')"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
-                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
+                  className="pl-10 py-3 rounded-lg text-sm dark:bg-neutral-900 text-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 dark:border-neutral-800"
                 />
               </div>
               <div className='relative'>
                 <textarea
                   placeholder='Custom Prompt'
                   onChange={(e) => setCustomPrompt(e.target.value)}
-                  className='w-full h-20 p-2 rounded-lg text-sm bg-gray-50 dark:bg-neutral-900 text-gray-600 placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 focus:ring-red-400 dark:border-neutral-800'
+                  className='w-full h-20 p-2 rounded-lg text-sm bg-gray-50 dark:bg-neutral-900 text-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border-2 border-gray-300 focus:ring-red-400 dark:border-neutral-800'
                 />
               </div>
               <Button

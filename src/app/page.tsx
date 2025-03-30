@@ -15,7 +15,7 @@ import Image from 'next/image';
 
 import {Hubot_Sans} from 'next/font/google';
 
-const hubotSans = Hubot_Sans({weight: '400', style: 'normal'});
+export const hubotSans = Hubot_Sans({weight: '400', style: 'normal'});
 
 const features = [
     {
