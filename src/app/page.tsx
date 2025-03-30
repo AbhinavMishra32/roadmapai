@@ -116,27 +116,27 @@ const Page = () => {
             <div className='w-full h-full block bg-neutral-950'>
                 <section className='flex flex-col bg-neutral-950 justify-center mt-14 md:mt-0'>
                     <div className="text-center md:mt-48 mt-16 font-['dm_serif_display']">
-                        <div className='bg-gradient-to-b inline-block from-white to-neutral-400 bg-clip-text'>
-                            <h1 className={`${hubotSans.className} bg-gradient-to-r from-neutral-900 to-purple-600 dark:from-white dark:to-purple-500 bg-clip-text text-transparent mx-4 md:text-7xl text-4xl text-center drop-shadow-[0_0_30px_rgba(168,85,247,0.5)] dark:drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]`}>
+                        <div className='inline-block'>
+                            <h1 className={`${hubotSans.className} animate-gradient-x bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-300 bg-clip-text text-transparent mx-4 md:text-7xl text-4xl text-center drop-shadow-[0_0_30px_rgba(245,196,245,0.4)] dark:drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]`}>
                             Never Be Unsure 
                             </h1>
                         </div>
                         <br />
-                        <div className='bg-gradient-to-b inline-block from-white to-neutral-400 bg-clip-text'>
+                        <div className='bg-gradient-to-b inline-block from-white to-indigo-300 bg-clip-text'>
                             <h1 
-                             className={` ${hubotSans.className} text-transparent mx-4 md:mb-2 md:text-7xl text-3xl text-center font-extrabold `}>
-                                about <FlipWords words={['your future', '', 'mind.']} duration={3000} className='' />
+                             className={` ${hubotSans.className} text-transparent mx-4 md:mb-10 md:text-7xl text-3xl text-center font-extrabold `}>
+                                about <FlipWords words={['your future', '', 'making progress']} duration={3000} className='' />
                             </h1>
                         </div>
-                        <h3 className={`${hubotSans.className} text-center md:pt-2 pt-1 md:text-xl text-sm text-neutral-400`}>
-                            Never miss an idea again.
+                        <h3 className={`${hubotSans.className} text-center md:pt-2 pt-1 md:text-xl text-sm text-indigo-100`}>
+                        Use Routely AI to create roadmap of anything you want
                         </h3>
                         <Link href="/sign-in">
-                        <div className="mt-8 bg-neutral-900 border-2 border-neutral-700 inline-block px-5 py-2 rounded-full font-sans hover:font-['dm_serif_display'] hover:px-6 hover:bg-gradient-to-b hover:from-neutral-200 hover:to-neutral-300 hover:text-black hover:shadow-inner hover:shadow-neutral-400">Get Started</div>
+                        <div className={`${hubotSans.className} mt-8 bg-white inline-block px-5 py-2 rounded-full hover:px-8 transition-all duration-300 ease-out`}>Get Started</div>
                         </Link>
                     </div>
                     {windowWidth > 768 ? (
-                        <div className='h-fit w-[80vw] mx-auto mt-14 overflow-hidden rounded-3xl shadow-[0px_-100px_300px_-40px_rgba(93,93,93,0.23)] relative'>
+                        <div className='h-fit w-[80vw] mx-auto mt-14 overflow-hidden rounded-3xl shadow-[0px_-100px_300px_-40px_rgba(93,43,163,0.23)] relative'>
                             <Image src={LandingImage} alt='landing-page' className='w-full h-auto object-scale-down border-[2px] border-neutral-800 rounded-3xl' />
                             <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-neutral-950 rounded-3xl'></div>
                         </div>
