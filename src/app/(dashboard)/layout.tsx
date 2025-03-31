@@ -26,7 +26,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const sen = Sen({
+const sen = Sen({
   variable: "--font-sen",
   subsets: ["latin"],
 })

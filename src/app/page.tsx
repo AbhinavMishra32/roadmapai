@@ -13,69 +13,15 @@ import { BentoCard, BentoGrid } from '../components/ui/bento-grid';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-import {Hubot_Sans} from 'next/font/google';
+import {hubotSans} from '@/lib/fonts';
 import { VelocityScroll } from '@/components/magicui/scroll-based-velocity';
 
-export const hubotSans = Hubot_Sans({
-    weight: '400', 
-    style: 'normal',
-    subsets: ['latin', 'latin-ext', 'vietnamese']
-});
-
-const features = [
-    {
-      Icon: FileTextIcon,
-      name: "Save your files",
-      description: "Save your files to the cloud and access them from anywhere.",
-      href: "/",
-      cta: "Learn more",
-      background: <img className="absolute -right-20 -top-20 opacity-60" />,
-      className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
-    },
-    {
-      Icon: StarsIcon,
-      name: "Use AI to ask questions about your notes",
-      description: "Using AI, you can ask questions about your notes and get answers.",
-      href: "/",
-      cta: "Learn more",
-      background: <img src={LandingImage} className="absolute -right-20 -top-20 opacity-60 object-contain" />,
-      className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
-    },
-    {
-      Icon: Laptop,
-      name: "Beautiful UI",
-      description: "Our UI is designed to be simple and easy to use.",
-      href: "/",
-      cta: "Learn more",
-      background: <img className="absolute -right-20 -top-20 opacity-60" />,
-      className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
-    },
-    {
-      Icon: TextIcon,
-      name: "Rich text editor",
-      description: "Our rich text editor allows you to format your notes however you like.",
-      href: "/",
-      cta: "Learn more",
-      background: <img className="absolute -right-20 -top-20 opacity-60" />,
-      className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
-    },
-    {
-      Icon: Globe,
-      name: "Access from any device",
-      description:
-        "Access your files from any device, including your phone.",
-      href: "/",
-      cta: "Learn more",
-      background: <img className="absolute -right-20 -top-20 opacity-60" />,
-      className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
-    },
-  ];
 
 
 const Page = () => {
     const { isSignedIn } = useAuth();
     const router = useRouter();
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    // const [windowWidth, setWindowWidth] = useState(window.innerWidth); // put this in useeffect to run in client cuz without it, it cant know the window size in server, even if we write 'use client';
     // const [scrollY, setScrollY] = useState<number>(0);
 
     // useEffect(() => {
@@ -150,7 +96,7 @@ const Page = () => {
                             {/* <img src={LandingImageMobile} alt='landing-page' className='w-full h-full object-scale-down border-[1px] border-neutral-700 rounded-2xl' /> */}
                             // <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-neutral-950 rounded-2xl'></div>
                         // </div>
-                    )}
+                    {/* )} */}
                 </section>
                 <section>
                     <div className="relative mt-10 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent text-indigo-900">

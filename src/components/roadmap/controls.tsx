@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2, Target, Compass, ArrowRight, Sparkles, BrainCircuit } from 'lucide-react'
 import { Background, BackgroundVariant } from 'reactflow'
-import {hubotSans} from '../../app/page';
+import {hubotSans} from '@/lib/fonts';
 
 interface ControlsProps {
   onGenerateNewMindMap: (situation: string, goal: string, customPrompt?: string | null) => void

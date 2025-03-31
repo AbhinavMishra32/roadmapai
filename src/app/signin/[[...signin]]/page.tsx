@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, Sparkles, Stars } from "lucide-react"
 import { useEffect, useState } from "react"
-import { hubotSans } from "@/app/page"
+import { hubotSans } from "@/lib/fonts"
 
 export default function SignInPage() {
   const [mounted, setMounted] = useState(false)

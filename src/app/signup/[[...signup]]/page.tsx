@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, Sparkles, Stars } from "lucide-react"
 import { useEffect, useState } from "react"
-import { hubotSans } from "@/app/page"
+import { hubotSans } from "@/lib/fonts"
 
 export default function SignUpPage() {
   const [mounted, setMounted] = useState(false)
@@ -232,33 +232,6 @@ export default function SignUpPage() {
       {/* Animated background elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-black to-black" />
-
-        {/* Animated particles */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: Math.random() * 0.5 + 0.1,
-              scale: Math.random() * 0.6 + 0.2,
-            }}
-            animate={{
-              y: [null, Math.random() * -100, null],
-              opacity: [null, Math.random() * 0.5 + 0.3, null],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-            className="absolute w-1 h-1 bg-indigo-400 rounded-full"
-            style={{
-              filter: `blur(${Math.random() * 2}px)`,
-            }}
-          />
-        ))}
 
         {/* Main glow elements */}
         <motion.div

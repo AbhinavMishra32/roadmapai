@@ -5,7 +5,7 @@ import Link from 'next/link'
 import ThemeSelectorButton from './ThemeSelectorButton'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { InteractiveHoverButton } from './magicui/interactive-hover-button'
-import { hubotSans } from '@/app/page'
+import { hubotSans } from '@/lib/fonts'
 
 const LandingNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)

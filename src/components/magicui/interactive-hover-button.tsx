@@ -1,10 +1,9 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { hubotSans } from "@/app/page";
+import { hubotSans } from "@/lib/fonts";
 
-interface InteractiveHoverButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+type InteractiveHoverButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const InteractiveHoverButton = React.forwardRef<
   HTMLButtonElement,

@@ -71,6 +71,7 @@ export async function saveRoadmap({
         edges: {
           createMany: {
             data: edges.map((edge) => ({
+              id: edge.id,
               edgeId: edge.id,
               source: edge.source,
               target: edge.target,

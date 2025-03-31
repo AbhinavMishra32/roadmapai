@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory, SchemaType } from '@google/generative-ai'
 import { CareerInfo, QuestionData, Recommendations } from '../types'
-import { initialEdges, initialNodes } from '@/data';
+// import { initialEdges, initialNodes } from '@/data';
 import { roadmapData } from '@/data';
 import { useEffect } from 'react'
 import { api } from '@/services/axios'

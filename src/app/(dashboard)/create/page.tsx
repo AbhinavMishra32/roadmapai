@@ -13,6 +13,7 @@ import ReactFlow, {
   Position,
   addEdge,
   SelectionMode,
+  Connection,
 } from "reactflow"
 import dagre from "dagre"
 import "reactflow/dist/style.css"
@@ -31,6 +32,7 @@ import TaskDisplay from "@/components/roadmap/task-display";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { saveRoadmap } from "@/actions/saveRoadmap";
+import { useSelectedNode } from "@/hooks/useSelectedNode";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -177,7 +179,7 @@ const CareerPossibilities = () => {
     [setNodes, setEdges],
   )
 
-  const onConnect = useCallback((connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges])
+  const onConnect = useCallback((connection: Edge | Connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges])
 
   return (
     <>
@@ -239,15 +241,5 @@ const CareerPossibilities = () => {
     </>
   )
 }
-
-export const useSelectedNode = (initialNode: MindMapNode | null = null) => {
-  const [selectedNodeState, setSelectedNodeState] = useState<MindMapNode | null>(initialNode);
-
-  useEffect(() => {
-    setSelectedNodeState(initialNode);
-  }, [initialNode]);
-
-  return selectedNodeState;
-};
 
 export default CareerPossibilities
