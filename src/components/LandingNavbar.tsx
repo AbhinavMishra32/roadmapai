@@ -72,7 +72,7 @@ const LandingNavbar = () => {
         }}
       >
         <motion.div
-          className="bg-neutral-950/40 border border-neutral-700/50 backdrop-blur-lg rounded-full h-[74px] shadow-lg shadow-black/10 w-[800px] mx-auto"
+          className="bg-neutral-950/40 border border-neutral-700/50 backdrop-blur-lg rounded-full h-[74px] shadow-lg shadow-black/10 md:w-[800px] mx-auto"
           style={{
             backgroundColor: isScrolled
               ? "rgba(10, 10, 13, 0.8)"

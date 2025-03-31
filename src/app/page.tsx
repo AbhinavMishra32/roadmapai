@@ -132,27 +132,27 @@ const Page = () => {
                         <h3 className={`${hubotSans.className} text-center md:pt-2 pt-1 md:text-xl text-sm text-indigo-100`}>
                             Use Routely AI to create a roadmap of anything you can think of
                         </h3>
-                        <Link href="/sign-in">
-                            <div className={`${hubotSans.className} mt-8 bg-white hover:bg-indigo-500 inline-block px-5 py-2 rounded-full hover:px-8 hover:text-white transition-all duration-300 ease-out`}>Get Started</div>
+                        <Link href="/signup">
+                            <div className={`${hubotSans.className} mt-8 bg-white hover:bg-indigo-600 inline-block px-5 py-2 rounded-full hover:px-8 hover:text-white transition-all duration-300 ease-out`}>Get Started</div>
                         </Link>
                     </div>
-                    {windowWidth > 768 ? (
+                    {/* {windowWidth > 768 ? ( */}
                         <div className='h-fit w-[80vw] mx-auto mt-14 overflow-hidden rounded-3xl shadow-[0px_-100px_300px_-40px_rgba(93,43,163,0.23)] relative'>
                             <Image src={LandingImage} alt='landing-page' className='w-full h-auto object-scale-down border-[2px] border-neutral-800 rounded-3xl' />
                             <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-neutral-950 rounded-3xl'></div>
                         </div>
-                    ) : (
-                        <div className='h-fit w-[400px] max-w-[90vw] mx-auto mt-10 overflow-hidden rounded-2xl shadow-[0px_-50px_100px_-10px_rgba(93,93,93,0.23)] relative'>
+                    {/* // ) : ( */}
+                        // <div className='h-fit w-[400px] max-w-[90vw] mx-auto mt-10 overflow-hidden rounded-2xl shadow-[0px_-50px_100px_-10px_rgba(93,93,93,0.23)] relative'>
                             {/* <img src={LandingImageMobile} alt='landing-page' className='w-full h-full object-scale-down border-[1px] border-neutral-700 rounded-2xl' /> */}
-                            <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-neutral-950 rounded-2xl'></div>
-                        </div>
+                            // <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-neutral-950 rounded-2xl'></div>
+                        // </div>
                     )}
                 </section>
                 <section>
-                    <div className="relative mt-10 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent text-indigo-200">
+                    <div className="relative mt-10 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent text-indigo-900">
                         <VelocityScroll>Works with any idea </VelocityScroll>
-                        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-neutral-950"></div>
-                         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-neutral-950"></div>
+                        <div className="pointer-events-none absolute inset-y-0 left-0 w-2/4 bg-gradient-to-r from-neutral-950/70 from-30%"></div>
+                         <div className="pointer-events-none absolute inset-y-0 right-0 w-2/4 bg-gradient-to-l from-neutral-950/70 from-30%"></div>
                     </div>
                 </section>
             </div>
