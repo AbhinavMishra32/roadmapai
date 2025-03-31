@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import ThemeSelectorButton from './ThemeSelectorButton'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { InteractiveHoverButton } from './magicui/interactive-hover-button'
+import { hubotSans } from '@/app/page'
 
 const LandingNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -70,7 +72,7 @@ const LandingNavbar = () => {
         }}
       >
         <motion.div
-          className="bg-neutral-950/40 border border-neutral-700/50 backdrop-blur-xl rounded-full h-[74px] shadow-lg shadow-black/10 w-[800px] mx-auto"
+          className="bg-neutral-950/40 border border-neutral-700/50 backdrop-blur-lg rounded-full h-[74px] shadow-lg shadow-black/10 w-[800px] mx-auto"
           style={{
             backgroundColor: isScrolled
               ? "rgba(10, 10, 13, 0.8)"
@@ -105,7 +107,7 @@ const LandingNavbar = () => {
               </svg>
             </motion.div>
 
-            <div id="navigation" className="flex justify-center gap-8">
+            <div id="navigation" className={`flex justify-center gap-8 ${hubotSans.className}`}>
               {["About", "Pricing", "Contact"].map((item, index) => (
                 <motion.div
                   key={item}
@@ -123,22 +125,23 @@ const LandingNavbar = () => {
               variants={itemVariants}
               className="flex items-center gap-4 flex-shrink-0"
             >
-              {/* <ThemeSelectorButton /> */}
-              <Link href={"/sign-in"}>
-                <motion.button
+             {/* <ThemeSelectorButton /> */}
+              <Link href={"/signin"}>
+                <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{
                     duration: 0.15,
                     ease: "easeOut",
                   }}
-                  className="relative inline-flex h-9 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                  className="relative inline-flex overflow-hidden rounded-full"
                 >
-                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                  <InteractiveHoverButton className='w-30 h-10'>Sign In</InteractiveHoverButton>
+                  {/* <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                   <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl">
                     Sign in
-                  </span>
-                </motion.button>
+                  </span> */}
+                </motion.div>
               </Link>
             </motion.div>
           </div>

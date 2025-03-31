@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 import {Hubot_Sans} from 'next/font/google';
+import { VelocityScroll } from '@/components/magicui/scroll-based-velocity';
 
 export const hubotSans = Hubot_Sans({weight: '400', style: 'normal'});
 
@@ -109,7 +110,7 @@ const Page = () => {
     //     }
     // }, [isSignedIn, router]);
     return (
-        <div className='flex flex-col bg-neutral-500 w-screen h-screen overflow-x-hidden'>
+        <div className='flex flex-col bg-neutral-950 w-screen h-screen overflow-x-hidden'>
             <div className='h-[74px] w-full items-center justify-center flex'>
                 <LandingNavbar />
             </div>
@@ -118,21 +119,21 @@ const Page = () => {
                     <div className="text-center md:mt-48 mt-16 font-['dm_serif_display']">
                         <div className='inline-block'>
                             <h1 className={`${hubotSans.className} animate-gradient-x bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-300 bg-clip-text text-transparent mx-4 md:text-7xl text-4xl text-center drop-shadow-[0_0_30px_rgba(245,196,245,0.4)] dark:drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]`}>
-                            Never Be Unsure 
+                                Never Be Unsure
                             </h1>
                         </div>
                         <br />
                         <div className='bg-gradient-to-b inline-block from-white to-indigo-300 bg-clip-text'>
-                            <h1 
-                             className={` ${hubotSans.className} text-transparent mx-4 md:mb-10 md:text-7xl text-3xl text-center font-extrabold `}>
-                                about <FlipWords words={['your future', '', 'making progress']} duration={3000} className='' />
+                            <h1
+                                className={` ${hubotSans.className} text-transparent mx-4 md:mb-10 md:text-7xl text-3xl text-center font-extrabold `}>
+                                about <FlipWords words={['making progress', 'your future', 'getting there']} duration={7000} className='' />
                             </h1>
                         </div>
                         <h3 className={`${hubotSans.className} text-center md:pt-2 pt-1 md:text-xl text-sm text-indigo-100`}>
-                        Use Routely AI to create roadmap of anything you want
+                            Use Routely AI to create a roadmap of anything you can think of
                         </h3>
                         <Link href="/sign-in">
-                        <div className={`${hubotSans.className} mt-8 bg-white inline-block px-5 py-2 rounded-full hover:px-8 transition-all duration-300 ease-out`}>Get Started</div>
+                            <div className={`${hubotSans.className} mt-8 bg-white hover:bg-indigo-500 inline-block px-5 py-2 rounded-full hover:px-8 hover:text-white transition-all duration-300 ease-out`}>Get Started</div>
                         </Link>
                     </div>
                     {windowWidth > 768 ? (
@@ -148,14 +149,10 @@ const Page = () => {
                     )}
                 </section>
                 <section>
-                    <div className='w-full h-fit py-10 bg-neutral-950'>
-                        <div className='w-[80vw] h-full bg-neutral-950 mx-auto'>
-                            <BentoGrid className='lg:grid-rows-3 h-full'>
-                                {features.map((feature) => (
-                                    <BentoCard key={feature.name} {...feature} />
-                                ))}
-                            </BentoGrid>
-                        </div>
+                    <div className="relative mt-10 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent text-indigo-200">
+                        <VelocityScroll>Works with any idea </VelocityScroll>
+                        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-neutral-950"></div>
+                         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-neutral-950"></div>
                     </div>
                 </section>
             </div>
