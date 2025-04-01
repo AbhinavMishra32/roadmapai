@@ -56,7 +56,7 @@ export default function SignInPage() {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="mb-8 relative"
           >
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-500 from-10% via-30% bg-clip-text text-transparent relative z-10">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-300 via-indigo-200 to-indigo-500 from-5% via-20% bg-clip-text text-transparent relative z-10">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -129,29 +129,29 @@ export default function SignInPage() {
               className="absolute bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-xl -z-10"
             />
 
-              <SignIn
-                appearance={{
-                  elements: {
-                    formButtonPrimary:
-                      "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_10px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_15px_rgba(139,92,246,0.4)]",
-                    formFieldInput:
-                      "bg-gray-800/80 border-gray-700 text-white rounded-md px-3 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200",
-                    card: "bg-transparent shadow-none",
-                    headerTitle: "text-white text-2xl font-bold",
-                    headerSubtitle: "text-gray-400",
-                    socialButtonsBlockButton:
-                      "border border-gray-700 bg-gray-800/50 hover:bg-gray-800 text-white transition-all duration-200 hover:border-indigo-500/50",
-                    footerActionLink: "text-indigo-400 hover:text-indigo-300",
-                    identityPreviewEditButton: "text-indigo-400 hover:text-indigo-300",
-                    formFieldLabel: "text-gray-300 font-medium",
-                    formFieldAction: "text-indigo-400 hover:text-indigo-300",
-                    formFieldSuccessText: "text-green-400",
-                    formFieldErrorText: "text-red-400",
-                    dividerLine: "bg-gray-700",
-                    dividerText: "text-gray-400",
-                  },
-                }}
-              />
+            <SignIn
+              appearance={{
+                elements: {
+                  formButtonPrimary:
+                    "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_10px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_15px_rgba(139,92,246,0.4)]",
+                  formFieldInput:
+                    "bg-gray-800/80 border-gray-700 text-white rounded-md px-3 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200",
+                  card: "bg-transparent shadow-none",
+                  headerTitle: "text-white text-2xl font-bold",
+                  headerSubtitle: "text-gray-400",
+                  socialButtonsBlockButton:
+                    "border border-gray-700 bg-gray-800/50 hover:bg-gray-800 text-white transition-all duration-200 hover:border-indigo-500/50",
+                  footerActionLink: "text-indigo-400 hover:text-indigo-300",
+                  identityPreviewEditButton: "text-indigo-400 hover:text-indigo-300",
+                  formFieldLabel: "text-gray-300 font-medium",
+                  formFieldAction: "text-indigo-400 hover:text-indigo-300",
+                  formFieldSuccessText: "text-green-400",
+                  formFieldErrorText: "text-red-400",
+                  dividerLine: "bg-gray-700",
+                  dividerText: "text-gray-400",
+                },
+              }}
+            />
           </motion.div>
 
           <motion.div
