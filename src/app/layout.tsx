@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-    title: "Roadmap AI",
+    title: "Decipath | AI Roadmap Generator",
     description: "Generate any roadmap you want",
 };
 
