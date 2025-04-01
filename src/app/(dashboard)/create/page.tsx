@@ -237,7 +237,7 @@ const CareerPossibilities = () => {
             )}
           </AnimatePresence>
         </div>
-        <RoadmapControls />
+        {/* <RoadmapControls /> */}
       </div>
     </>
   )
