@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default async function RootLayout({
             <html lang="en">
                 <body>
                     {children}
+                    <Analytics />
                 </body>
             </html>
         </ClerkProvider>
