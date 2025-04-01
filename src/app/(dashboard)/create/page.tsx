@@ -166,7 +166,7 @@ const CareerPossibilities = () => {
       setIsGenerating(true)
       setIsInitialized(true)
       try {
-        const { initialNodes, initialEdges } = await generateMindMapData({ currentState, desiredOutcome, sampleData: true, customPrompt, theme })
+        const { initialNodes, initialEdges } = await generateMindMapData({ currentState, desiredOutcome, sampleData: false, customPrompt, theme })
         saveRoadmap({ nodes: initialNodes, edges: initialEdges, title: "First roadmap" });
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
