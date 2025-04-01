@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { AnimatePresence, motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
+import { hubotSans } from "@/lib/fonts"
 
 interface TaskDisplayProps {
   selectedNode?: {
@@ -42,7 +43,7 @@ export default function TaskDisplay({ selectedNode }: TaskDisplayProps) {
   if (!selectedNode?.data.tasks?.length) return null
 
   return (
-    <Card className="absolute z-50 bottom-6 left-6 m-3 w-auto max-w-md rounded-3xl backdrop-blur-lg dark:backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border-2 border-indigo-200 dark:border-indigo-400/30 overflow-hidden">
+    <Card className={`${hubotSans.className} absolute z-50 bottom-6 left-6 m-3 w-auto max-w-md rounded-3xl backdrop-blur-lg dark:backdrop-blur-md bg-white/40 dark:bg-neutral-950/50 shadow-xl border-2 border-indigo-200 dark:border-indigo-400/30 overflow-hidden`}>
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}

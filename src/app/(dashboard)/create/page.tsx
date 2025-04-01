@@ -33,6 +33,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { saveRoadmap } from "@/actions/saveRoadmap";
 import { useSelectedNode } from "@/hooks/useSelectedNode";
+import { hubotSans } from "@/lib/fonts";
 
 const dagreGraph = new dagre.graphlib.Graph()
 dagreGraph.setDefaultEdgeLabel(() => ({}))
@@ -165,7 +166,7 @@ const CareerPossibilities = () => {
       setIsGenerating(true)
       setIsInitialized(true)
       try {
-        const { initialNodes, initialEdges } = await generateMindMapData({ currentState, desiredOutcome, sampleData: false, customPrompt, theme })
+        const { initialNodes, initialEdges } = await generateMindMapData({ currentState, desiredOutcome, sampleData: true, customPrompt, theme })
         saveRoadmap({ nodes: initialNodes, edges: initialEdges, title: "First roadmap" });
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges)
         setNodes(layoutedNodes)
@@ -186,7 +187,7 @@ const CareerPossibilities = () => {
       {selectedNode && (
         <TaskDisplay selectedNode={selectedNode} />
       )}
-      <div className="flex flex-col w-full h-screen relative">
+      <div className={`${hubotSans.className} flex flex-col w-full h-screen relative`}>
         {!isGenerating && !isInitialized && (
           <div className={`p-4 bg-gray-50 dark:bg-neutral-950 ${!isInitialized && "h-full"} flex items-center`}>
             <ControlsComponent
@@ -236,7 +237,7 @@ const CareerPossibilities = () => {
             )}
           </AnimatePresence>
         </div>
-        {/* <RoadmapControls /> */}
+        <RoadmapControls />
       </div>
     </>
   )
