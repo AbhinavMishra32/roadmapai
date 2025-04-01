@@ -107,7 +107,7 @@ const LandingNavbar = () => {
               </svg>
             </motion.div>
 
-            <div id="navigation" className={`flex justify-center gap-8 ${hubotSans.className}`}>
+            <div id="navigation" className={`hidden sm:flex justify-center gap-8 ${hubotSans.className}`}>
               {["About", "Pricing", "Contact"].map((item, index) => (
                 <motion.div
                   key={item}
