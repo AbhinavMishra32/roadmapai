@@ -80,7 +80,7 @@ const Page = () => {
                             </h1>
                         </div>
                         <h3 className={`${hubotSans.className} text-center md:pt-2 pt-1 md:text-xl text-sm text-indigo-100`}>
-                            Use Routely AI to create a roadmap of anything you can think of
+                            Use Decipath to create a roadmap of anything you can think of
                         </h3>
                         <Link href="/signup">
                             <div className={`${hubotSans.className} mt-8 bg-white hover:bg-indigo-600 inline-block px-5 py-2 rounded-full hover:px-8 hover:text-white transition-all duration-300 ease-out`}>Get Started</div>

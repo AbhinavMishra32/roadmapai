@@ -109,8 +109,11 @@ export default function SignUpPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
+                style={{
+                    textShadow: "0 0 30px rgba(122, 104, 255, 0.2), 0 0 100px rgba(122, 104, 255, 0.1)"
+                }}
               >
-                Routely AI
+                Decipath
               </motion.span>
             </h1>
 
